@@ -149,8 +149,12 @@ Framework = {
         if not player then return end
         return player.PlayerData.money['bank']
     end,
+    ---comment: Get if player has group
+    ---@param source string
+    ---@param group string
+    ---@return boolean | nil
     HasGroup = function(source, group)
-        QBCore.Functions.HasPermission(source, group)
+        return QBCore.Functions.HasPermission(source, group)
     end,
 }
 return Framework

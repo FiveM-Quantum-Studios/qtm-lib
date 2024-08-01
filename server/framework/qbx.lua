@@ -138,8 +138,18 @@ Framework = {
         if not player then return end
         return player.PlayerData.money['bank']
     end,
+    ---comment: Get if player has group
+    ---@param source string
+    ---@param group string
+    ---@return boolean | nil
     HasGroup = function(source, group)
         return exports.qbx_core:HasPermission(source, group)
     end,
+
+    lib.callback.register('qtm-lib:SpawnVehicle', function(source, model, pos, heading)
+        local netId, entity = qbx.spawnVehicle({ model = model, spawnSource = pos })
+        return netId
+    end)
 }
+
 return Framework

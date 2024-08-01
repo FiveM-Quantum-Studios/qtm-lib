@@ -73,7 +73,7 @@ end)
 
 RegisterCommand('Testt', function(source)
     ESX = exports[Config.FrameworkResource]:getSharedObject()
-    qtm2 = exports['qtm-core']:getCoreObject()
+    qtm2 = exports['qtm-lib']:getCoreObject()
     print(ESX.DumpTable(qtm2))
     --print(qtm.GetPlayerFromId(source).GetChar().dateofbirth)
 end, false)

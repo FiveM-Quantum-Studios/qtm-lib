@@ -2,10 +2,10 @@ fx_version 'adamant'
 game 'gta5'
 lua54 'yes'
 
-name 'qtm-core'
+name 'qtm-lib'
 author 'Quantum Studios'
 version '1.0.0'
-repository 'https://github.com/FiveM-Quantum-Studios/qtm-core'
+repository 'https://github.com/FiveM-Quantum-Studios/qtm-lib'
 description 'A library of shared functions to utilise in Quantum Studios resources.'
 
 dependencies {

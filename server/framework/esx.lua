@@ -144,6 +144,10 @@ Framework = {
         if not player then return end
         return player.getAccount('bank').money
     end,
+    ---comment: Get if player has group
+    ---@param source string
+    ---@param group string
+    ---@return boolean | nil
     HasGroup = function(source, group)
         local player = ESX.GetPlayerFromId(source)
         if not player then return end
