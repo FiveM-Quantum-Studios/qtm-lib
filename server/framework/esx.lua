@@ -1,9 +1,9 @@
+if GetResourceState('es_extended') ~= 'started' then return end
 ESX = nil
-
 if Config.IsOldESX then
     TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 else 
-    ESX = exports[Config.FrameworkResource]:getSharedObject()
+    ESX = exports['es_extended']:getSharedObject()
 end
 
 Framework = {

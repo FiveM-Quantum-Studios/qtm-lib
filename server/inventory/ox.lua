@@ -1,0 +1,1 @@
+if GetResourceState('ox_inventory') ~= 'started' then return end

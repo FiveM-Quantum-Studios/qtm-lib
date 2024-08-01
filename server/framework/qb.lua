@@ -1,5 +1,5 @@
-
-QBCore = exports[Config.FrameworkResource]:GetCoreObject()
+if GetResourceState('qb-core') ~= 'started' then return end
+QBCore = exports['qb-core']:GetCoreObject()
 
 Framework = {
     ---comment: Get player identifier

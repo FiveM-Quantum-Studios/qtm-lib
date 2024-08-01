@@ -1,0 +1,1 @@
+if GetResourceState('qs-inventory') ~= 'started' then return end
