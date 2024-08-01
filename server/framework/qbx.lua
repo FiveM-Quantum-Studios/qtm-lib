@@ -1,4 +1,4 @@
-qb-core
+
 Framework = {
     ---comment: Get player identifier
     ---@param source string
