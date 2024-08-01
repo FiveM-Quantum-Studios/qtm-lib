@@ -1,6 +1,6 @@
 if GetResourceState('ox_fuel') ~= 'started' then return end
 
-Qtm = {
+Fuel = {
     SetFuel = function(vehicle, amount)
         Entity(vehicle).state.fuel = amount
     end,
@@ -10,4 +10,4 @@ Qtm = {
     end,
 }
 
-return Qtm
+return Fuel
