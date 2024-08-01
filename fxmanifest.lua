@@ -12,7 +12,9 @@ dependencies {
     '/server:7290',
     '/onesync',
 }
-
+files {
+    'server/framework/*.lua'
+}
 shared_scripts {
     '@ox_lib/init.lua',
     'shared/**.lua',
@@ -23,6 +25,6 @@ client_scripts {
     'client/**.*'
 }
 server_script {
-    'server/**.*',
+  'server/server.lua'
 }
 
