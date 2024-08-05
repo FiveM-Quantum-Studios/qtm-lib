@@ -90,6 +90,8 @@ qtm.Framework = LoadClientFile('framework', DetectFramework())
 qtm.Fuel = LoadClientFile('fuel', DetectFuel())
 qtm.VehicleKeys = LoadClientFile('vehiclekeys', DetectVehicleKeys())
 qtm.Weather = LoadClientFile('weather', DetectWeather())
+
 qtm.Notification = LoadSharedFile('notification', Config.Notifications)
+qtm.Logging = LoadSharedFile('logging', 'qtm')
 
 exports('getCoreObject', function() return qtm end)

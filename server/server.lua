@@ -55,7 +55,9 @@ qtm = {}
 qtm.Framework = LoadServerFile('framework', DetectFramework())
 qtm.Inventory = LoadServerFile('inventory', DetectInventory())
 qtm.Dispatch = LoadServerFile('dispatch', DetectDispatch())
+
 qtm.Notification = LoadSharedFile('notification', Config.Notifications)
+qtm.Logging = LoadSharedFile('logging', 'qtm')
 
 exports('getCoreObject', function()
     return qtm
