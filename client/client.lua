@@ -94,4 +94,4 @@ qtm.Weather = LoadClientFile('weather', DetectWeather())
 qtm.Notification = LoadSharedFile('notification', Config.Notifications)
 qtm.Logging = LoadSharedFile('logging', 'qtm')
 
-exports('getCoreObject', function() return qtm end)
+exports('getSharedObject', function() return qtm end)

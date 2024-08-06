@@ -59,7 +59,7 @@ qtm.Dispatch = LoadServerFile('dispatch', DetectDispatch())
 qtm.Notification = LoadSharedFile('notification', Config.Notifications)
 qtm.Logging = LoadSharedFile('logging', 'qtm')
 
-exports('getCoreObject', function()
+exports('getSharedObject', function()
     return qtm
 end)
 

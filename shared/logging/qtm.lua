@@ -18,3 +18,5 @@ Logging = function(code, ...)
         print(script, LoggingTypes[code], ...)
     end
 end
+
+return Logging

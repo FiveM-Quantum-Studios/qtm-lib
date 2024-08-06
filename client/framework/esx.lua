@@ -1,4 +1,4 @@
-local ESX = exports[Config.FrameworkResource]:getSharedObject()
+local ESX = exports['es_extended']:getSharedObject()
 
 Framework = {
     ---comment: Get if player is loaded
