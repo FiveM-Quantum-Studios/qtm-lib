@@ -15,7 +15,8 @@ Framework = {
     end
 }
 
-AddEventHandler('esx:playerLoaded', function()
+RegisterNetEvent('esx:playerLoaded')
+AddEventHandler('esx:playerLoaded',function()
     Framework.PlayerLoaded = true
 end)
 
