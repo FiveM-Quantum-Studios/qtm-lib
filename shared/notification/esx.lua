@@ -7,20 +7,18 @@ local NotificationTypes = {
     ['warning'] = 'info',
 }
 
-Notification = {
-    Notification = function(source, title, type, message)
-        local notitype = nil
-        if lib.table.contains({'success', 'error', 'info', 'warning'}, type) then
-            notitype = NotificationTypes[type]
-        else
-            notitype = 'inform'
-        end
-        if IsDuplicityVersion() then -- serverside
-            TriggerClientEvent('esx:showNotification', source, message, notitype, Config.NotificationsTime)
-        else -- clientside
-            ESX.ShowNotification(message, notitype, Config.NotificationsTime)
-        end
+Notification = function(source, title, type, message)
+    local notitype = nil
+    if lib.table.contains({'success', 'error', 'info', 'warning'}, type) then
+        notitype = NotificationTypes[type]
+    else
+        notitype = 'inform'
     end
-}
+    if IsDuplicityVersion() then -- serverside
+        TriggerClientEvent('esx:showNotification', source, message, notitype, Config.NotificationsTime)
+    else -- clientside
+        ESX.ShowNotification(message, notitype, Config.NotificationsTime)
+    end
+end
 
 return Notification

@@ -14,11 +14,11 @@ Framework = {
     end
 }
 
-AddEventHandler('ox:playerLoaded', function()
+RegisterNetEvent('ox:playerLoaded', function()
     Framework.PlayerLoaded = true
 end)
 
-AddEventHandler('ox:playerLogout', function()
+RegisterNetEvent('ox:playerLogout', function()
     Framework.PlayerLoaded = false
 end)
 

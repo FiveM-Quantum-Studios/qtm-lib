@@ -15,11 +15,11 @@ Framework = {
     end
 }
 
-AddEventHandler('QBCore:Client:OnPlayerLoaded', function()
+RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()
     Framework.PlayerLoaded = true
 end)
 
-AddEventHandler('QBCore:Client:OnPlayerUnload', function()
+RegisterNetEvent('QBCore:Client:OnPlayerUnload', function()
     Framework.PlayerLoaded = false
 end)
 

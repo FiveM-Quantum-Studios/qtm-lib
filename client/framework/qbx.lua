@@ -22,7 +22,7 @@ Framework = {
     end
 }
 
-AddEventHandler('QBCore:Client:OnPlayerLoaded', function()
+RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()
     Framework.PlayerLoaded = true
 end)
 
