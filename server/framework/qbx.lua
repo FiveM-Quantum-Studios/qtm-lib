@@ -66,6 +66,11 @@ Framework = {
             return player.PlayerData.charinfo.phone
         end
     },
+    ---comment: Get all players
+    ---@return table
+    GetPlayers = function()
+        return exports.qbx_core:GetQBPlayers()
+    end,
     GetJob = {
         ---comment: Get player job name
         ---@param source string
@@ -107,6 +112,18 @@ Framework = {
                 local player = exports.qbx_core:GetPlayer(source)
                 if not player then return end
                 return player.PlayerData.job.payment
+            end,
+            ---comment: Check if job exists
+            ---@param jobName string
+            ---@return boolean | nil
+            exists = function(jobName)
+                local jobTable = exports.qbx_core:GetJobs()
+                if not jobTable then return end
+                if lib.table.contains(jobTable, jobName) then
+                    return true
+                else
+                    return false
+                end
             end
         }
     },

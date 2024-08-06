@@ -65,6 +65,11 @@ Framework = {
             return 0 --Dont know if it works
         end
     },
+    ---comment: Get all players
+    ---@return table
+    GetPlayers = function()
+        return Ox.GetPlayers({})
+    end,
     GetJob = {
         ---comment: Get player job name
         ---@param source string
@@ -106,7 +111,13 @@ Framework = {
                 local player = Ox.GetPlayer(source)
                 if not player then return end
                 return ''
-            end
+            end,
+            ---comment: Check if job exists
+            ---@param jobName string
+            ---@return boolean | string
+            exists = function(jobName)
+                return ''
+            end,
         }
     },
     ---comment: Get players online of job table

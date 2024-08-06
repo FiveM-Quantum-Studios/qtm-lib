@@ -67,6 +67,11 @@ Framework = {
             return player.get('phone_number')
         end
     },
+    ---comment: Get all players
+    ---@return table
+    GetPlayers = function()
+        return ESX.GetPlayers()
+    end,
     GetJob = {
         ---comment: Get player job name
         ---@param source string
@@ -108,6 +113,18 @@ Framework = {
                 local player = ESX.GetPlayerFromId(source)
                 if not player then return end
                 return player.getJob().grade_salary
+            end,
+            ---comment: Check if job exists
+            ---@param jobName string
+            ---@return boolean | nil
+            exists = function(jobName)
+                local jobTable = ESX.GetJobs()
+                if not jobTable then return end
+                if lib.table.contains(jobTable, jobName) then
+                    return true
+                else
+                    return false
+                end
             end
         }
     },
