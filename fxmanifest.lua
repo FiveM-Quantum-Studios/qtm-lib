@@ -26,4 +26,7 @@ server_script {
   'server/server.lua'
 }
 
-files { 'client/**/*.lua'}
+files {
+    'client/**/*.lua',
+    'imports.lua'
+}

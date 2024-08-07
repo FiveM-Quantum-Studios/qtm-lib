@@ -17,117 +17,50 @@ Framework = {
         if not player then return false end
         return player.playerId
     end,
-    GetChar = {
-        ---comment: Get player first name
-        ---@param source string
-        ---@return string | nil
-        firstname = function(source)
-            local player = ESX.GetPlayerFromId(source)
-            if not player then return end
-            return player.get('firstName')
-        end,
-        ---comment: Get player last name
-        ---@param source string
-        ---@return string | nil
-        lastname = function(source)
-            local player = ESX.GetPlayerFromId(source)
-            if not player then return end
-            return player.get('lastName')
-        end,
-        ---comment: Get player full name
-        ---@param source string
-        ---@return string | nil
-        fullname = function(source)
-            local player = ESX.GetPlayerFromId(source)
-            if not player then return end
-            return player.getName()
-        end,
-        ---comment: Get player gender
-        ---@param source string
-        ---@return string | nil
-        gender = function(source)
-            local player = ESX.GetPlayerFromId(source)
-            if not player then return end
-            return player.get('sex')
-        end,
-        ---comment: Get player date of birth
-        ---@param source string
-        ---@return string | nil
-        dateofbirth = function(source)
-            local player = ESX.GetPlayerFromId(source)
-            if not player then return end
-            return player.get('dateofbirth')
-        end,
-        ---comment: Get player phone number
-        ---@param source string
-        ---@return number | nil
-        phone = function(source)
-            local player = ESX.GetPlayerFromId(source)
-            if not player then return end
-            return player.get('phone_number')
-        end
-    },
+    ---comment: Get player character
+    ---@param source string
+    ---@return table | nil
+    GetChar = function(source)
+        local player = ESX.GetPlayerFromId(source)
+        if not player then return end
+        return {
+            firstname = player.get('firstName'),
+            lastname = player.get('lastName'),
+            fullname = player.getName(),
+            gender = player.get('sex'),
+            dateofbirth = player.get('dateofbirth'),
+        }
+    end,
     ---comment: Get all players
     ---@return table
     GetPlayers = function()
         return ESX.GetPlayers()
     end,
-    GetJob = {
-        ---comment: Get player job name
-        ---@param source string
-        ---@return string | nil
-        name = function(source)
-            local player = ESX.GetPlayerFromId(source)
-            if not player then return end
-            return player.getJob().name
-        end,
-        ---comment: Get player job label
-        ---@param source string
-        ---@return string | nil
-        label = function (source)
-            local player = ESX.GetPlayerFromId(source)
-            if not player then return end
-            return player.getJob().label
-        end,
-        grade = {
-            ---comment: Get player job grade label
-            ---@param source string
-            ---@return string | nil
-            label = function(source)
-                local player = ESX.GetPlayerFromId(source)
-                if not player then return end
-                return player.getJob().grade_label
-            end,
-            ---comment: Get player job grade level
-            ---@param source string
-            ---@return string | nil
-            level = function(source)
-                local player = ESX.GetPlayerFromId(source)
-                if not player then return end
-                return player.getJob().grade
-            end,
-            ---comment: Get player job grade salary
-            ---@param source string
-            ---@return string | nil
-            payment = function(source)
-                local player = ESX.GetPlayerFromId(source)
-                if not player then return end
-                return player.getJob().grade_salary
-            end,
-            ---comment: Check if job exists
-            ---@param jobName string
-            ---@return boolean | nil
-            exists = function(jobName)
-                local jobTable = ESX.GetJobs()
-                if not jobTable then return end
-                if lib.table.contains(jobTable, jobName) then
-                    return true
-                else
-                    return false
-                end
-            end
+    ---@param source string
+    ---@return table | nil
+    GetJob = function(source)
+        local player = ESX.GetPlayerFromId(source)
+        if not player then return end
+        return {
+            name = player.getJob().name,
+            label = player.getJob().label,
+            grade_label = player.getJob().grade_label,
+            grade_level = player.getJob().grade_level,
+            grade_payment = player.getJob().grade_salary
         }
-    },
+    end,
+    ---comment: Check if job exists
+    ---@param jobName string
+    ---@return boolean | nil
+    DoesJobExist = function(jobName)
+        local jobTable = ESX.GetJobs()
+        if not jobTable then return end
+        if lib.table.contains(jobTable, jobName) then
+            return true
+        else
+            return false
+        end
+    end,
     ---comment: Get players online of job table
     ---@param jobs table
     ---@return number

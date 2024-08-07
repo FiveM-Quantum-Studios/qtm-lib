@@ -59,6 +59,16 @@ qtm.Dispatch = LoadServerFile('dispatch', DetectDispatch())
 qtm.Notification = LoadSharedFile('notification', Config.Notifications)
 qtm.Logging = LoadSharedFile('logging', 'qtm')
 
-exports('getSharedObject', function()
-    return qtm
-end)
+local qtm_meta = {
+    __index = function(table, key)
+        if key == "Framework" then
+            return rawget(table, key)
+        else
+            return nil
+        end
+    end
+}
+
+setmetatable(qtm, qtm_meta)
+
+exports('getSharedObject', function() return qtm end)

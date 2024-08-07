@@ -15,111 +15,51 @@ Framework = {
         if not player then return false end
         return player.source
     end,
-    GetChar = {
-        ---comment: Get player first name
-        ---@param source string
-        ---@return string | nil
-        firstname = function(source)
-            local player = Ox.GetPlayer(source)
-            if not player then return end
-            return player.firstName
-        end,
-        ---comment: Get player last name
-        ---@param source string
-        ---@return string | nil
-        lastname = function(source)
-            local player = Ox.GetPlayer(source)
-            if not player then return end
-            return player.lastName
-        end,
-        ---comment: Get player full name
-        ---@param source string
-        ---@return string | nil
-        fullname = function(source)
-            local player = Ox.GetPlayer(source)
-            if not player then return end
-            return player.name
-        end,
-        ---comment: Get player gender
-        ---@param source string
-        ---@return string | nil
-        gender = function(source)
-            local player = Ox.GetPlayer(source)
-            if not player then return end
-            return player.gender --Dont know if it works
-        end,
-        ---comment: Get player date of birth
-        ---@param source string
-        ---@return string | nil
-        dateofbirth = function(source)
-            local player = Ox.GetPlayer(source)
-            if not player then return end
-            return player.dateofbirth --Dont know if it works
-        end,
-        ---comment: Get player phone number
-        ---@param source string
-        ---@return number | nil
-        phone = function(source)
-            local player = Ox.GetPlayer(source)
-            if not player then return end
-            return 0 --Dont know if it works
-        end
-    },
+    ---comment: Get player character
+    ---@param source string
+    ---@return table | nil
+    GetChar = function(source)
+        local player = Ox.GetPlayer(source)
+        if not player then return end
+        return {
+            firstname = player.firstname,
+            lastname = player.lastname,
+            fullname = player.name,
+            gender = player.gender,
+            dateofbirth = player.dateofbirth,
+        }
+    end,
     ---comment: Get all players
     ---@return table
     GetPlayers = function()
         return Ox.GetPlayers({})
     end,
-    GetJob = {
-        ---comment: Get player job name
-        ---@param source string
-        ---@return string | nil
-        name = function(source)
-            local player = Ox.GetPlayer(source)
-            if not player then return end
-            return ''
-        end,
-        ---comment: Get player job label
-        ---@param source string
-        ---@return string | nil
-        label = function (source)
-            local player = Ox.GetPlayer(source)
-            if not player then return end
-            return ''
-        end,
-        grade = {
-            ---comment: Get player job grade label
-            ---@param source string
-            ---@return string | nil
-            label = function(source)
-                local player = Ox.GetPlayer(source)
-                if not player then return end
-                return ''
-            end,
-            ---comment: Get player job grade level
-            ---@param source string
-            ---@return string | nil
-            level = function(source)
-                local player = Ox.GetPlayer(source)
-                if not player then return end
-                return ''
-            end,
-            ---comment: Get player job grade salary
-            ---@param source string
-            ---@return string | nil
-            payment = function(source)
-                local player = Ox.GetPlayer(source)
-                if not player then return end
-                return ''
-            end,
-            ---comment: Check if job exists
-            ---@param jobName string
-            ---@return boolean | string
-            exists = function(jobName)
-                return ''
-            end,
+    ---@param source string
+    ---@return table | nil
+    GetJob = function(source)
+        local player = Ox.GetPlayer(source)
+        if not player then return end
+        return {
+            name = '',
+            label = '',
+            grade_label = '',
+            grade_level = '',
+            grade_payment = ''
         }
-    },
+    end,
+    ---comment: Check if job exists
+    ---@param jobName string
+    ---@return boolean | nil
+    DoesJobExist = function(jobName)
+        -- local jobTable = ESX.GetJobs()
+        -- if not jobTable then return end
+        -- if lib.table.contains(jobTable, jobName) then
+        --     return true
+        -- else
+        --     return false
+        -- end
+        return false
+    end,
     ---comment: Get players online of job table
     ---@param jobs table
     ---@return number
@@ -154,21 +94,16 @@ Framework = {
         if not player then return end
         return player.getGroup() == group
     end,
-
-
-
-
-
-
-
-
-
-
+    ---comment: Spawn vehicle
+    ---@param source string
+    ---@param model string
+    ---@param pos vector3
+    ---@param heading number
+    ---@return number | nil
     lib.callback.register('qtm-lib:SpawnVehicle', function(source, model, pos, heading)
         local player = Ox.GetPlayer(source)
         if not player then return end
-        return Ox.CreateVehicle({ model = model, owner = source.charid }, pos, heading)
+        return Ox.CreateVehicle({ model = model, owner = player.charid }, pos, heading)
     end)
 }
-
 return Framework

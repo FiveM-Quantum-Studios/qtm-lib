@@ -1,4 +1,3 @@
-
 Framework = {
     ---comment: Get player identifier
     ---@param source string
@@ -16,117 +15,50 @@ Framework = {
         if not player then return false end
         return player.PlayerData.source
     end,
-    GetChar = {
-        ---comment: Get player first name
-        ---@param source string
-        ---@return string | nil
-        firstname = function(source)
-            local player = exports.qbx_core:GetPlayer(source)
-            if not player then return end
-            return player.PlayerData.charinfo.firstname
-        end,
-        ---comment: Get player last name
-        ---@param source string
-        ---@return string | nil
-        lastname = function(source)
-            local player = exports.qbx_core:GetPlayer(source)
-            if not player then return end
-            return player.PlayerData.charinfo.lastname
-        end,
-        ---comment: Get player full name
-        ---@param source string
-        ---@return string | nil
-        fullname = function(source)
-            local player = exports.qbx_core:GetPlayer(source)
-            if not player then return end
-            return ("%s %s"):format(player.PlayerData.charinfo.firstname, player.PlayerData.charinfo.lastname)
-        end,
-        ---comment: Get player gender
-        ---@param source string
-        ---@return string | nil
-        gender = function(source)
-            local player = exports.qbx_core:GetPlayer(source)
-            if not player then return end
-            return player.PlayerData.charinfo.gender
-        end,
-        ---comment: Get player date of birth
-        ---@param source string
-        ---@return string | nil
-        dateofbirth = function(source)
-            local player = exports.qbx_core:GetPlayer(source)
-            if not player then return end
-            return player.PlayerData.charinfo.birthdate
-        end,
-        ---comment: Get player phone number
-        ---@param source string
-        ---@return number | nil
-        phone = function(source)
-            local player = exports.qbx_core:GetPlayer(source)
-            if not player then return end
-            return player.PlayerData.charinfo.phone
-        end
-    },
+    ---comment: Get player character
+    ---@param source string
+    ---@return table | nil
+    GetChar = function(source)
+        local player = exports.qbx_core:GetPlayer(source)
+        if not player then return end
+        return {
+            firstname = player.PlayerData.charinfo.firstname,
+            lastname = player.PlayerData.charinfo.lastname,
+            fullname = ("%s %s"):format(player.PlayerData.charinfo.firstname, player.PlayerData.charinfo.lastname),
+            gender = player.PlayerData.charinfo.gender,
+            dateofbirth = player.PlayerData.charinfo.birthdate,
+        }
+    end,
     ---comment: Get all players
     ---@return table
     GetPlayers = function()
         return exports.qbx_core:GetQBPlayers()
     end,
-    GetJob = {
-        ---comment: Get player job name
-        ---@param source string
-        ---@return string | nil
-        name = function(source)
-            local player = exports.qbx_core:GetPlayer(source)
-            if not player then return end
-            return player.PlayerData.job.name
-        end,
-        ---comment: Get player job label
-        ---@param source string
-        ---@return string | nil
-        label = function (source)
-            local player = exports.qbx_core:GetPlayer(source)
-            if not player then return end
-            return player.PlayerData.job.label
-        end,
-        grade = {
-            ---comment: Get player job grade label
-            ---@param source string
-            ---@return string | nil
-            label = function(source)
-                local player = exports.qbx_core:GetPlayer(source)
-                if not player then return end
-                return player.PlayerData.job.grade.name
-            end,
-            ---comment: Get player job grade level
-            ---@param source string
-            ---@return string | nil
-            level = function(source)
-                local player = exports.qbx_core:GetPlayer(source)
-                if not player then return end
-                return player.PlayerData.job.grade.level
-            end,
-            ---comment: Get player job grade salary
-            ---@param source string
-            ---@return string | nil
-            payment = function(source)
-                local player = exports.qbx_core:GetPlayer(source)
-                if not player then return end
-                return player.PlayerData.job.payment
-            end,
-            ---comment: Check if job exists
-            ---@param jobName string
-            ---@return boolean | nil
-            exists = function(jobName)
-                local jobTable = exports.qbx_core:GetJobs()
-                if not jobTable then return end
-                if lib.table.contains(jobTable, jobName) then
-                    return true
-                else
-                    return false
-                end
-            end
+    ---@param source string
+    ---@return table | nil
+    GetJob = function(source)
+        local player = exports.qbx_core:GetPlayer(source)
+        if not player then return end
+        return {
+            name = player.PlayerData.job.name,
+            label = player.PlayerData.job.label,
+            grade_label = player.PlayerData.job.grade.name,
+            grade_level = player.PlayerData.job.grade.level,
+            grade_payment = player.PlayerData.job.payment
         }
-    },
+    end,
+    ---comment: Check if job exists
+    ---@param jobName string
+    ---@return boolean | nil
+    DoesJobExist = function(jobName)
+        local jobTable = exports.qbx_core:GetJobs()
+        if not jobTable then return end
+        if lib.table.contains(jobTable, jobName) then
+            return true
+        else
+            return false
+        end
+    end,
     ---comment: Get players online of job table
     ---@param jobs table
     ---@return number
@@ -162,7 +94,12 @@ Framework = {
     HasGroup = function(source, group)
         return exports.qbx_core:HasPermission(source, group)
     end,
-
+    ---comment: Spawn vehicle
+    ---@param source string
+    ---@param model string
+    ---@param pos vector3
+    ---@param heading number
+    ---@return number | nil
     lib.callback.register('qtm-lib:SpawnVehicle', function(source, model, pos, heading)
         local netId, entity = qbx.spawnVehicle({ model = model, spawnSource = pos })
         return netId

@@ -1,0 +1,1 @@
+qtm = exports['qtm-lib']:getSharedObject()
