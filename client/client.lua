@@ -13,9 +13,7 @@ function DetectFramework()
     local framework = nil
     if GetResourceState('es_extended') == 'started' then 
         framework = 'esx'
-    elseif GetResourceState('qb-core') == 'started' then
-        framework = 'qb'
-    elseif GetResourceState('qbx') == 'started' then
+    elseif GetResourceState('qbox_core') == 'started' then
         framework = 'qbx'
     elseif GetResourceState('ox_core') == 'started' then
         framework = 'ox'
@@ -93,6 +91,7 @@ qtm.Weather = LoadClientFile('weather', DetectWeather())
 
 qtm.Notification = LoadSharedFile('notification', Config.Notifications)
 qtm.Logging = LoadSharedFile('logging', 'qtm')
+qtm.DumpTable = LoadSharedFile('dumpTable', 'qtm')
 
 local qtm_meta = {
     __index = function(table, key)
