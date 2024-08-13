@@ -56,6 +56,7 @@ qtm.Dispatch = LoadServerFile('dispatch', DetectDispatch())
 
 qtm.Notification = LoadSharedFile('notification', Config.Notifications)
 qtm.Logging = LoadSharedFile('logging', 'qtm')
+qtm.DumpTable = LoadSharedFile('dumpTable', 'qtm')
 
 local qtm_meta = {
     __index = function(table, key)
