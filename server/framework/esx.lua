@@ -9,6 +9,9 @@ Framework = {
         if not player then return end
         return player.getIdentifier()
     end,
+    GetPlayerFromId = function(source)
+        return ESX.GetPlayerFromId(source)
+    end,
     ---comment: Get player id from identifier
     ---@param identifier string
     ---@return number | false
