@@ -1,7 +1,5 @@
 TextUI = {
-    ---comment: Give vehicle keys
-    ---@param vehicle number
-    ---@param plate string
+    ---@param text string
     Show = function(text)
         lib.showTextUI(text)
     end,

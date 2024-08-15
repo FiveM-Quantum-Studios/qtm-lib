@@ -31,6 +31,18 @@ Inventory = {
     ClearInventory = function(source, keep)
         return ox_inventory:ClearInventory(source, keep)
     end,
+
+    ForceOpenInventory = function(source, stashType, stashName)
+        return ox_inventory:forceOpenInventory(source, stashType, stashName)
+    end,
+
+    GetInventory = function(source, owner)
+        return ox_inventory:GetInventory(source, owner)
+    end,
+
+    RegisterStash = function(id, label, slots, maxWeight, owner, groups, coords)
+        return ox_inventory:RegisterStash(id, label, slots, maxWeight, owner, groups, coords)
+    end
 }
 
 return Inventory
