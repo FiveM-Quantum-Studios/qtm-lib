@@ -10,11 +10,11 @@ Dispatch = {
             image = nil,
             blip = {
                 sprite = table.sprite,
-                scale = 1.5,
+                scale = table.scale,
                 colour = table.colour,
                 flashes = table.flashes,
                 text = table.blipText,
-                time = (20 * 1000),     --20 secs
+                time = table.time,     --20 secs
             }
         })
     end,

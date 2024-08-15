@@ -4,8 +4,8 @@ Dispatch = {
         TriggerServerEvent('cd_dispatch:AddNotification', {
             job_table = {Config.PoliceJobs}, 
             coords = data.coords,
-            title = Config.Language.methProduction,
-            message = 'A '..data.sex..Config.Language.methProduction..' at '..data.street, 
+            title = table.title,
+            message = table.text, 
             flash = 0,
             unique_id = data.unique_id,
             sound = 1,
@@ -14,7 +14,7 @@ Dispatch = {
                 scale = table.scale,
                 colour = table.colour,
                 flashes = table.flashes, 
-                text = Config.Language.blipText,
+                text = table.blipText,
                 time = table.time,
                 radius = table.radius
             }
@@ -22,3 +22,4 @@ Dispatch = {
     end,
 }
 return Dispatch
+

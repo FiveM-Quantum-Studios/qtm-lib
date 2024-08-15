@@ -1,3 +1,4 @@
+
 Dispatch = {
     CreateDispatch = function(table)
         local playerData = exports['rcore_dispatch']:GetPlayerData()
@@ -15,7 +16,7 @@ Dispatch = {
                 sprite = table.sprite,
                 colour = table.colour,
                 scale = table.scale,
-                text = Config.Language.blipText,
+                text = table.text,
                 flashes = table.flashes, 
                 radius = table.radius
             }
