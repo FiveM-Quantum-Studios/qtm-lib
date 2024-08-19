@@ -26,21 +26,22 @@ Inventory = {
     ---@param source string
     ---@param keep table
     ---@return boolean
-    ClearInventory = function(source, keep) -- Something like this maybe? Need to test.
-        local inventory = exports['qs-inventory']:GetInventory(source)
-        for _, item in pairs(inventory) do
-            if lib.table.contains(keep, item.name) then
-                goto continue
-            else
-                exports['qs-inventory']:RemoveItem(source, item.name, item.count)
-            end
-            ::continue::
-        end
+    ClearInventory = function(source, keep)
+        return exports['qs-inventory']:ClearInventory(source, keep)
     end,
 
     ForceOpenInventory = function(source, stashType, stashName)
-        -- ???
-        -- return ox_inventory:forceOpenInventory(source, stashType, stashName)
+        local other = {}
+        other.maxweight = 10000
+        other.slots = 50
+        if stashType == 'player' then
+            stashType = 'otherplayer'
+        end
+        if stashType == 'stash' then
+            return TriggerServerEvent("inventory:server:OpenInventory", stashType, stashName, other)
+        else
+            return TriggerServerEvent("inventory:server:OpenInventory", stashType, stashName)
+        end
     end,
 
     GetInventory = function(source, owner)
