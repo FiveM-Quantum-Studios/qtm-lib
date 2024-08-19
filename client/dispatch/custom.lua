@@ -1,6 +1,7 @@
+Dispatch = {
+    CreateDispatch = function(table)
 
-dispatch = {
-
+    end,
 }
 
-return dispatch
+return Dispatch
