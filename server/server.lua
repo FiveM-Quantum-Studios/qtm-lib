@@ -90,3 +90,5 @@ local qtm_meta = {
 setmetatable(qtm, qtm_meta)
 
 exports('getSharedObject', function() return qtm end)
+
+lib.versionCheck('FiveM-Quantum-Studios/qtm-lib')
