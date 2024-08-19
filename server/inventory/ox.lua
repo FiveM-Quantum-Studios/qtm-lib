@@ -12,7 +12,7 @@ Inventory = {
     ---@param source string
     ---@param item string
     ---@param quantity integer
-    ---@return boolean | 'qs'
+    ---@return boolean
     RemoveItem = function(source, item, quantity, metadata, slot)
         return ox_inventory:RemoveItem(source, item, quantity, metadata, slot)
     end,
@@ -20,7 +20,7 @@ Inventory = {
     ---@param source string
     ---@param item string
     ---@param quantity integer
-    ---@return boolean | string | 'qs'
+    ---@return boolean | string
     AddItem = function(source, item, quantity, metadata, slot)
         return ox_inventory:AddItem(source, item, quantity, metadata, slot)
     end,

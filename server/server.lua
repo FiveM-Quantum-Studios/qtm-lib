@@ -21,7 +21,24 @@ function DetectFramework()
     if not framework then
         framework = 'custom'
     end
+    Logging('debug', 'Framework: '..framework..' detected')
     return framework
+end
+
+function DetectDispatch()
+    local dispatch = nil
+    if GetResourceState('cd_dispatch') == 'started' then
+        dispatch = 'cd_dispatch'
+    elseif GetResourceState('qs-dispatch') == 'started' then
+        dispatch = 'qs-dispatch'
+    elseif GetResourceState('rcore_dispatch') == 'started' then
+        dispatch = 'rcore_dispatch'
+    end
+    if not dispatch then
+        dispatch = 'custom'
+    end
+    Logging('debug', 'Dispatch: '..dispatch..' detected')
+    return dispatch
 end
 
 function DetectInventory()
@@ -34,6 +51,7 @@ function DetectInventory()
     if not inventory then
         inventory = 'custom'
     end
+    Logging('debug', 'Inventory: '..inventory..' detected')
     return inventory
 end
 
@@ -45,15 +63,16 @@ function DetectDispatch()
     if not dispatch then
         dispatch = 'custom'
     end
+    Logging('debug', 'Dispatch: '..dispatch..' detected')
     return dispatch
 end
 
 qtm = {}
-
+-- Server stuff
 qtm.Framework = LoadServerFile('framework', DetectFramework())
 qtm.Inventory = LoadServerFile('inventory', DetectInventory())
 qtm.Dispatch = LoadServerFile('dispatch', DetectDispatch())
-
+-- Shared stuff
 qtm.Notification = LoadSharedFile('notification', Config.Notifications)
 qtm.Logging = LoadSharedFile('logging', 'qtm')
 qtm.DumpTable = LoadSharedFile('dumpTable', 'qtm')

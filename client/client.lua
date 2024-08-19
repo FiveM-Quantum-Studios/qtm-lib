@@ -21,7 +21,24 @@ function DetectFramework()
     if not framework then
         framework = 'custom'
     end
+    Logging('debug', 'Framework: '..framework..' detected')
     return framework
+end
+
+function DetectDispatch()
+    local dispatch = nil
+    if GetResourceState('cd_dispatch') == 'started' then
+        dispatch = 'cd_dispatch'
+    elseif GetResourceState('qs-dispatch') == 'started' then
+        dispatch = 'qs-dispatch'
+    elseif GetResourceState('rcore_dispatch') == 'started' then
+        dispatch = 'rcore_dispatch'
+    end
+    if not dispatch then
+        dispatch = 'custom'
+    end
+    Logging('debug', 'Dispatch: '..dispatch..' detected')
+    return dispatch
 end
 
 function DetectFuel()
@@ -38,6 +55,7 @@ function DetectFuel()
     if not fuel then
         fuel = 'custom'
     end
+    Logging('debug', 'Fuel: '..fuel..' detected')
     return fuel
 end
 
@@ -53,6 +71,7 @@ function DetectWeather()
     if not weather then
         weather = 'custom'
     end
+    Logging('debug', 'Weather: '..weather..' detected')
     return weather
 end
 
@@ -76,6 +95,7 @@ function DetectVehicleKeys()
     if not vehicleKeys then
         vehicleKeys = 'custom'
     end
+    Logging('debug', 'VehicleKeys: '..vehicleKeys..' detected')
     return vehicleKeys
 end
 
@@ -83,12 +103,15 @@ end
 
 
 qtm = {}
-
+-- Client stuff
 qtm.Framework = LoadClientFile('framework', DetectFramework())
+qtm.Dispatch = LoadClientFile('dispatch', DetectDispatch())
 qtm.Fuel = LoadClientFile('fuel', DetectFuel())
+qtm.TextUI = LoadClientFile('textui', 'ox_lib')
 qtm.VehicleKeys = LoadClientFile('vehiclekeys', DetectVehicleKeys())
 qtm.Weather = LoadClientFile('weather', DetectWeather())
 
+-- Shared stuff
 qtm.Notification = LoadSharedFile('notification', Config.Notifications)
 qtm.Logging = LoadSharedFile('logging', 'qtm')
 qtm.DumpTable = LoadSharedFile('dumpTable', 'qtm')

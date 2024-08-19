@@ -10,7 +10,7 @@ Inventory = {
     ---@param source string
     ---@param item string
     ---@param quantity integer
-    ---@return boolean | 'qs'
+    ---@return boolean
     RemoveItem = function(source, item, quantity, metadata, slot)
         return false --Replace false with the actual event/export
     end,
@@ -18,7 +18,7 @@ Inventory = {
     ---@param source string
     ---@param item string
     ---@param quantity integer
-    ---@return boolean | string | 'qs'
+    ---@return boolean | string
     AddItem = function(source, item, quantity, metadata, slot)
         return false --Replace false with the actual event/export
     end,

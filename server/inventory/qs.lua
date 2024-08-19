@@ -1,12 +1,3 @@
-local function table_contains(table, element)
-    for _, value in pairs(table) do
-        if value == element then
-            return true
-        end
-    end
-    return false
-end
-
 Inventory = {
     ---comment: Get player item count
     ---@param source string
@@ -19,7 +10,7 @@ Inventory = {
     ---@param source string
     ---@param item string
     ---@param quantity integer
-    ---@return boolean | 'qs'
+    ---@return boolean
     RemoveItem = function(source, item, quantity, metadata, slot)
         return exports['qs-inventory']:RemoveItem(source, item, quantity, slot, metadata)
     end,
@@ -27,18 +18,18 @@ Inventory = {
     ---@param source string
     ---@param item string
     ---@param quantity integer
-    ---@return boolean | string | 'qs'
+    ---@return boolean | string
     AddItem = function(source, item, quantity, metadata, slot)
         return exports['qs-inventory']:AddItem(source, item, quantity, slot, metadata)
     end,
     ---comment: Clear inventory
     ---@param source string
     ---@param keep table
-    ---@return boolean | 'qs'
+    ---@return boolean
     ClearInventory = function(source, keep) -- Something like this maybe? Need to test.
         local inventory = exports['qs-inventory']:GetInventory(source)
         for _, item in pairs(inventory) do
-            if table_contains(keep, item.name) then
+            if lib.table.contains(keep, item.name) then
                 goto continue
             else
                 exports['qs-inventory']:RemoveItem(source, item.name, item.count)
