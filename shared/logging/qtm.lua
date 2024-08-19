@@ -5,7 +5,12 @@ local LoggingTypes = {
 }
 
 Logging = function(code, ...)
-    local script = "[^2"..GetInvokingResource().."^0]"
+    local script = nil
+    if GetInvokingResource() then 
+        script = "[^2"..GetInvokingResource().."^0]"
+    else
+        script = "[^2qtm-lib^0]"
+    end
     if code == 'debug' and not Config.Debug then return end
 
     if not lib.table.contains({'error', 'debug', 'info'}, code) then
