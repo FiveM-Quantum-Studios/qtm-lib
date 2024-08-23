@@ -16,10 +16,12 @@ Framework = {
 
 RegisterNetEvent('ox:playerLoaded', function()
     Framework.PlayerLoaded = true
+    TriggerEvent('qtm:onPlayerLoaded')
 end)
 
 RegisterNetEvent('ox:playerLogout', function()
     Framework.PlayerLoaded = false
+    TriggerEvent('qtm:onPlayerLogout')
 end)
 
 return Framework

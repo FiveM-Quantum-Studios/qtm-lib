@@ -24,10 +24,12 @@ Framework = {
 
 RegisterNetEvent('QBCore:Client:OnPlayerLoaded', function()
     Framework.PlayerLoaded = true
+    TriggerEvent('qtm:onPlayerLoaded')
 end)
 
 RegisterNetEvent('qbx_core:client:playerLoggedOut', function()
     Framework.PlayerLoaded = false
+    TriggerEvent('qtm:onPlayerLogout')
 end)
 
 return Framework

@@ -107,4 +107,9 @@ Framework = {
         return player.getGroup() == group
     end,
 }
+
+RegisterNetEvent('esx:playerDropped', function(playerId, reason)
+    TriggerClientEvent('qtm:onPlayerLogout', playerId)
+end)
+
 return Framework

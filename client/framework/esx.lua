@@ -17,6 +17,12 @@ Framework = {
 
 RegisterNetEvent('esx:playerLoaded', function()
     Framework.PlayerLoaded = true
+    TriggerEvent('qtm:onPlayerLoaded')
 end)
+
+
+
+
+
 
 return Framework
