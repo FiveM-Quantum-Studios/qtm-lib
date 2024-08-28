@@ -8,6 +8,13 @@ Inventory = {
     GetItemCount = function(source, item)
         return ox_inventory:GetItemCount(source, item)
     end,
+    ---comment: Get item label
+    ---@param source string
+    ---@param item string
+    ---@return string
+    GetItemLabel = function(source, item)
+        return ox_inventory:GetItem(source, item, nil, false).label
+    end,
     ---comment: Remove item from inventory
     ---@param source string
     ---@param item string

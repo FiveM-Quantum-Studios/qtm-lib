@@ -6,6 +6,13 @@ Inventory = {
     GetItemCount = function(source, item)
         return false --Replace false with the actual event/export
     end,
+    ---comment: Get item label
+    ---@param source string
+    ---@param item string
+    ---@return string | boolean
+    GetItemLabel = function(source, item)
+        return false --Replace false with the actual event/export
+    end,
     ---comment: Remove item from inventory
     ---@param source string
     ---@param item string

@@ -6,6 +6,13 @@ Inventory = {
     GetItemCount = function(source, item)
         return exports['qs-inventory']:GetItemTotalAmount(source, item)
     end,
+    ---comment: Get item label
+    ---@param source string
+    ---@param item string
+    ---@return string
+    GetItemLabel = function(source, item)
+        return exports['qs-inventory']:GetItemLabel(item)
+    end,
     ---comment: Remove item from inventory
     ---@param source string
     ---@param item string
