@@ -6,7 +6,19 @@ Inventory = {
     ---@return table
     GetItemInfo = function(item)
         return ox_inventory:Items(item)
-    end
+    end,
+
+    InventoryState = function()
+        return LocalPlayer.state.invOpen
+    end,
+
+    ToggleInventoryBusy = function(bool)
+        return LocalPlayer.state.invBusy == bool
+    end,
+
+    ToggleWeaponWheel = function(bool)
+        return ox_inventory:weaponWheel(bool)
+    end,
 }
 
 return Inventory
