@@ -59,6 +59,20 @@ function DetectFuel()
     return fuel
 end
 
+function DetectInventory()
+    local inventory = nil
+    if GetResourceState('ox_inventory') == 'started' then
+        inventory = 'ox'
+    elseif GetResourceState('qs-inventory') == 'started' then
+        inventory = 'qs'
+    end
+    if not inventory then
+        inventory = 'custom'
+    end
+    Logging('debug', 'Inventory: '..inventory..' detected')
+    return inventory
+end
+
 function DetectWeather()
     local weather = nil
     if GetResourceState('cd_easytime') == 'started' then
@@ -107,6 +121,7 @@ qtm = {}
 qtm.Framework = LoadClientFile('framework', DetectFramework())
 qtm.Dispatch = LoadClientFile('dispatch', DetectDispatch())
 qtm.Fuel = LoadClientFile('fuel', DetectFuel())
+qtm.Inventory = LoadClientFile('inventory', DetectInventory())
 qtm.TextUI = LoadClientFile('textui', 'ox_lib')
 qtm.VehicleKeys = LoadClientFile('vehiclekeys', DetectVehicleKeys())
 qtm.Weather = LoadClientFile('weather', DetectWeather())
