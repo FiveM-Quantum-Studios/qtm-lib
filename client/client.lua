@@ -113,6 +113,23 @@ function DetectVehicleKeys()
     return vehicleKeys
 end
 
+function DetectTextUI()
+    local textui = nil
+    if GetResourceState('ox_lib') == 'started' then
+        textui= 'ox_lib'
+    elseif GetResourceState('cd_drawtextui') == 'started' then
+        textui = 'cd_drawtextui'
+    elseif GetResourceState('jg-textui') == 'started' then
+        textui = 'jg-textui'
+    elseif GetResourceState('okokTextUI') == 'started' then 
+        textui = 'okokTextUI'
+    else
+        textui = 'custom'
+    end
+    Logging('debug', 'textui: '..textui..' detected')
+    return textui
+end
+
 
 
 
@@ -122,7 +139,7 @@ qtm.Framework = LoadClientFile('framework', DetectFramework())
 qtm.Dispatch = LoadClientFile('dispatch', DetectDispatch())
 qtm.Fuel = LoadClientFile('fuel', DetectFuel())
 qtm.Inventory = LoadClientFile('inventory', DetectInventory())
-qtm.TextUI = LoadClientFile('textui', 'ox_lib')
+qtm.TextUI = LoadClientFile('textui', DetectTextUI())
 qtm.VehicleKeys = LoadClientFile('vehiclekeys', DetectVehicleKeys())
 qtm.Weather = LoadClientFile('weather', DetectWeather())
 
