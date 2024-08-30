@@ -143,6 +143,10 @@ qtm.TextUI = LoadClientFile('textui', DetectTextUI())
 qtm.VehicleKeys = LoadClientFile('vehiclekeys', DetectVehicleKeys())
 qtm.Weather = LoadClientFile('weather', DetectWeather())
 qtm.Camera = LoadClientFile('snippets', 'camera')
+qtm.Scaleforms = LoadClientFile('snippets', 'scaleforms')
+qtm.Minigames = {
+    drill = LoadClientFile('minigames', 'dril')
+}
 
 -- Shared stuff
 qtm.Notification = LoadSharedFile('notification', Config.Notifications)
