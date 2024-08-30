@@ -38,7 +38,7 @@ Scaleforms = {
 	PopMulti = function(scaleform,method,...)
 	  PushScaleformMovieFunction(scaleform,method)
 	  for _,v in pairs({...}) do
-	    local trueType = TrueType(v)
+	    local trueType = Scaleforms.TrueType(v)
 	    if trueType == "string" then      
 	      PushScaleformMovieFunctionParameterString(v)
 	    elseif trueType == "boolean" then
