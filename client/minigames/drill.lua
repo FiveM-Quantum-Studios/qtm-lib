@@ -2,21 +2,21 @@
 Drilling = {
 	DisabledControls = {30,31,32,33,34,35},
 
-	Start = function(callback)
+	Start = function(callback, type)
 	  if not Drilling.Active then
 	    Drilling.Active = true
-	    Drilling.Init()
+	    Drilling.Init(type)
 	    Drilling.Update(callback)
 	  end
 	end,
 
-	Init = function()
+	Init = function(type)
   		if Drilling.Scaleform then
   		  Scaleforms.UnloadMovie(Drilling.Scaleform)
   		end
 
-		  Drilling.Scaleform = Scaleforms.LoadMovie(Drilling.Type)
-		  if Drilling.Type == 'VAULT_LASER' then
+		  Drilling.Scaleform = Scaleforms.LoadMovie(type)
+		  if type == 'VAULT_LASER' then
 		    extra = "SET_LASER_WIDTH"
 		  else
 		    extra = "SET_SPEED"
