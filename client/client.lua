@@ -145,7 +145,7 @@ qtm.Weather = LoadClientFile('weather', DetectWeather())
 qtm.Camera = LoadClientFile('snippets', 'camera')
 qtm.Scaleforms = LoadClientFile('snippets', 'scaleforms')
 qtm.Minigames = {
-    Drill = LoadClientFile('minigames', 'dril')
+    Drill = LoadClientFile('minigames', 'drill')
 }
 
 -- Shared stuff
