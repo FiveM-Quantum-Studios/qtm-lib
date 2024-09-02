@@ -1,5 +1,5 @@
 Utils = {
-	CheckForZ = function(table, bool, coords) -- GetGroundZFor_3dCoord does not have a big radius as the collissions need to be loaded, use bool to determine if we need to request collission 
+	FindGround = function(table, bool, coords) -- GetGroundZFor_3dCoord does not have a big radius as the collissions need to be loaded, use bool to determine if we need to request collission 
 		while not HasCollisionLoadedAroundEntity(PlayerPedId()) do
             qtm.Logging('debug', 'Waiting until collisions have been loaded')
             Wait(500)
@@ -27,3 +27,5 @@ Utils = {
 		return sortedCoords
 	end,
 }
+
+return Utils
