@@ -19,6 +19,11 @@ Inventory = {
     ToggleWeaponWheel = function(bool)
         return ox_inventory:weaponWheel(bool)
     end,
+
+    Search = function(table)
+        local items = ox_inventory:Search(source, 'count', {table})
+        return items
+    end,
 }
 
 return Inventory
