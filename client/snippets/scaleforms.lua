@@ -1,8 +1,10 @@
 Scaleforms = {
 	LoadMovie = function(name)
-	  local scaleform = RequestScaleformMovie(name)
-	  while not HasScaleformMovieLoaded(scaleform) do Wait(0); end
-	  return scaleform
+		local scaleform = RequestScaleformMovie(name)
+		while not HasScaleformMovieLoaded(scaleform) do
+			Wait(0)
+		end
+		return scaleform
 	end,
 
 	LoadInteractive = function(name)

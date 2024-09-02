@@ -12,10 +12,10 @@ Drilling = {
 
 	Init = function(type)
   		if Drilling.Scaleform then
-  		  Scaleforms.UnloadMovie(Drilling.Scaleform)
+  		  qtm.Scaleforms.UnloadMovie(Drilling.Scaleform)
   		end
 
-		  Drilling.Scaleform = Scaleforms.LoadMovie(type)
+		  Drilling.Scaleform = qtm.Scaleforms.LoadMovie(type)
 		  if type == 'VAULT_LASER' then
 		    extra = "SET_LASER_WIDTH"
 		  else
@@ -28,12 +28,12 @@ Drilling = {
 		  Drilling.HoleDepth  = 0.0
 
 	  
-		  Scaleforms.PopVoid(Drilling.Scaleform, "REVEAL")
-		  Scaleforms.PopFloat(Drilling.Scaleform, extra,     0.0)
-		  Scaleforms.PopFloat(Drilling.Scaleform,"SET_DRILL_POSITION",  0.0)
-		  Scaleforms.PopFloat(Drilling.Scaleform,"SET_TEMPERATURE",     0.0)
-		  Scaleforms.PopFloat(Drilling.Scaleform,"SET_HOLE_DEPTH",      0.0)
-		  Scaleforms.PopInt(Drilling.Scaleform,"SET_NUM_DISCS",      3)
+		  qtm.Scaleforms.PopVoid(Drilling.Scaleform, "REVEAL")
+		  qtm.Scaleforms.PopFloat(Drilling.Scaleform, extra,     0.0)
+		  qtm.Scaleforms.PopFloat(Drilling.Scaleform,"SET_DRILL_POSITION",  0.0)
+		  qtm.Scaleforms.PopFloat(Drilling.Scaleform,"SET_TEMPERATURE",     0.0)
+		  qtm.Scaleforms.PopFloat(Drilling.Scaleform,"SET_HOLE_DEPTH",      0.0)
+		  qtm.Scaleforms.PopInt(Drilling.Scaleform,"SET_NUM_DISCS",      3)
 	end,
 
 	Update = function(callback)
@@ -54,7 +54,7 @@ Drilling = {
 	  local last_pos = Drilling.DrillPos
 	  if IsControlJustPressed(0,172) then
 	    Drilling.DrillPos = math.min(1.0,Drilling.DrillPos + 0.01)
-	    Scaleforms.PopVoid(Drilling.Scaleform,"burstOutSparks")
+	    qtm.Scaleforms.PopVoid(Drilling.Scaleform,"burstOutSparks")
 	  elseif IsControlPressed(0,172) then
 	    Drilling.DrillPos = math.min(1.0,Drilling.DrillPos + (0.1 * GetFrameTime() / (math.max(0.1,Drilling.DrillTemp) * 10)))
 	  elseif IsControlJustPressed(0,173) then
@@ -78,10 +78,10 @@ Drilling = {
 	  if last_pos < Drilling.DrillPos then
 	    if Drilling.DrillSpeed > 0.4 then
 	      Drilling.DrillTemp = math.min(1.0,Drilling.DrillTemp + ((0.05 * GetFrameTime()) *  (Drilling.DrillSpeed * 10)))
-	      Scaleforms.PopFloat(Drilling.Scaleform,"SET_DRILL_POSITION",Drilling.DrillPos)
+	      qtm.Scaleforms.PopFloat(Drilling.Scaleform,"SET_DRILL_POSITION",Drilling.DrillPos)
 	    else
 	      if Drilling.DrillPos < 0.1 or Drilling.DrillPos < Drilling.HoleDepth then
-	        Scaleforms.PopFloat(Drilling.Scaleform,"SET_DRILL_POSITION",Drilling.DrillPos)
+	        qtm.Scaleforms.PopFloat(Drilling.Scaleform,"SET_DRILL_POSITION",Drilling.DrillPos)
 	      else
 	        Drilling.DrillPos = last_pos
 	        Drilling.DrillTemp = math.min(1.0,Drilling.DrillTemp + (0.01 * GetFrameTime()))
@@ -93,26 +93,26 @@ Drilling = {
 	    end
 
 	    if Drilling.DrillPos ~= Drilling.HoleDepth then
-	      Scaleforms.PopFloat(Drilling.Scaleform,"SET_DRILL_POSITION",Drilling.DrillPos)
+	      qtm.Scaleforms.PopFloat(Drilling.Scaleform,"SET_DRILL_POSITION",Drilling.DrillPos)
 	    end
 	  end
 
 	  if last_speed ~= Drilling.DrillSpeed then
-	    Scaleforms.PopFloat(Drilling.Scaleform,extra,Drilling.DrillSpeed)
+	    qtm.Scaleforms.PopFloat(Drilling.Scaleform,extra,Drilling.DrillSpeed)
 	  end
 
 	  if last_temp ~= Drilling.DrillTemp then    
-	    Scaleforms.PopFloat(Drilling.Scaleform,"SET_TEMPERATURE",Drilling.DrillTemp)
+	    qtm.Scaleforms.PopFloat(Drilling.Scaleform,"SET_TEMPERATURE",Drilling.DrillTemp)
 	  end
 
 	  if Drilling.DrillTemp >= 1.0 then
 	    Drilling.Result = false
 	    Drilling.Active = false
-	    Scaleforms.PopVoid(Drilling.Scaleform, "RESET")
+	    qtm.Scaleforms.PopVoid(Drilling.Scaleform, "RESET")
 	  elseif Drilling.DrillPos >= 1.0 then
 	    Drilling.Result = true
 	    Drilling.Active = false
-	    Scaleforms.PopVoid(Drilling.Scaleform, "RESET")
+	    qtm.Scaleforms.PopVoid(Drilling.Scaleform, "RESET")
 	  end
 
 	  Drilling.HoleDepth = (Drilling.DrillPos > Drilling.HoleDepth and Drilling.DrillPos or Drilling.HoleDepth)
