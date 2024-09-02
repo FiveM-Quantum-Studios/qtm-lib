@@ -11,6 +11,7 @@ description 'A library of shared functions to utilise in Quantum Studios resourc
 dependencies {
     '/server:7290',
     '/onesync',
+    'ox_lib'
 }
 
 shared_scripts {
