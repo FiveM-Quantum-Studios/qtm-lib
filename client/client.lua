@@ -144,6 +144,7 @@ qtm.VehicleKeys = LoadClientFile('vehiclekeys', DetectVehicleKeys())
 qtm.Weather = LoadClientFile('weather', DetectWeather())
 qtm.Camera = LoadClientFile('snippets', 'camera')
 qtm.Scaleforms = LoadClientFile('snippets', 'scaleforms')
+qtm.Utils = LoadClientFile('snippets', 'utils')
 qtm.Minigames = {
     Drill = LoadClientFile('minigames', 'drill')
 }
