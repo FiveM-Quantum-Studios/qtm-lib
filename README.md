@@ -1,4 +1,8 @@
-# qtm-lib
-qtm-lib is a libary, used by Quantum Studio scripts to provide cross framework support
+# qtm-lib - The Library for Quantum Studios
 
-# [Documentation](https://docs.quantum-studios.net/)
+## Dependencies
+* qtm-lib - https://github.com/FiveM-Quantum-Studios/qtm-lib
+
+## Support & Documentation
+* [Documentation](https://docs.quantum-studios.net/)
+* [Discord](https://dc.quantum-studios.net/)
