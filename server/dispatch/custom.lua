@@ -1,5 +1,5 @@
-dispatch = {
+Dispatch = {
 
 }
 
-return dispatch
+return Dispatch

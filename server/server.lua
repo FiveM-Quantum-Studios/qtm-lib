@@ -57,8 +57,12 @@ end
 
 function DetectDispatch()
     local dispatch = nil
-    if GetResourceState('qtm-dispatch') == 'started' then
-        dispatch = 'qtm-dispatch'
+    if GetResourceState('cd_dispatch') == 'started' then
+        dispatch = 'cd_dispatch'
+    elseif GetResourceState('qs-dispatch') == 'started' then
+        dispatch = 'qs-dispatch'
+    elseif GetResourceState('rcore_dispatch') == 'started' then
+        dispatch = 'rcore_dispatch'
     end
     if not dispatch then
         dispatch = 'custom'
@@ -71,7 +75,7 @@ qtm = {}
 -- Server stuff
 qtm.Framework = LoadServerFile('framework', DetectFramework())
 qtm.Inventory = LoadServerFile('inventory', DetectInventory())
-qtm.Dispatch = LoadServerFile('dispatch', DetectDispatch())
+qtm.Server.Dispatch = LoadServerFile('dispatch', DetectDispatch())
 qtm.Log = LoadServerFile('log', Config.Logging)
 -- Shared stuff
 qtm.Notification = LoadSharedFile('notification', Config.Notifications)
