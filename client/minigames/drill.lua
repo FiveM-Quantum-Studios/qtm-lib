@@ -2,15 +2,16 @@
 Drilling = {
 	DisabledControls = {30,31,32,33,34,35},
 
-	Start = function(callback, type)
+	Start = function(callback, discCount)
+	  local type = Config.Minigames.Drill
 	  if not Drilling.Active then
 	    Drilling.Active = true
-	    Drilling.Init(type)
+	    Drilling.Init(type, discCount)
 	    Drilling.Update(callback)
 	  end
 	end,
 
-	Init = function(type)
+	Init = function(type, discCount)
   		if Drilling.Scaleform then
   		  qtm.Scaleforms.UnloadMovie(Drilling.Scaleform)
   		end
@@ -33,7 +34,7 @@ Drilling = {
 		  qtm.Scaleforms.PopFloat(Drilling.Scaleform,"SET_DRILL_POSITION",  0.0)
 		  qtm.Scaleforms.PopFloat(Drilling.Scaleform,"SET_TEMPERATURE",     0.0)
 		  qtm.Scaleforms.PopFloat(Drilling.Scaleform,"SET_HOLE_DEPTH",      0.0)
-		  qtm.Scaleforms.PopInt(Drilling.Scaleform,"SET_NUM_DISCS",      3)
+		  qtm.Scaleforms.PopInt(Drilling.Scaleform,"SET_NUM_DISCS",      discCount)
 	end,
 
 	Update = function(callback)
@@ -131,4 +132,4 @@ Drilling = {
 	end,
 }
 
-return Drilling
+return Drilling.Start
