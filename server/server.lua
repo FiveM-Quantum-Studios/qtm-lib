@@ -72,6 +72,7 @@ qtm = {}
 qtm.Framework = LoadServerFile('framework', DetectFramework())
 qtm.Inventory = LoadServerFile('inventory', DetectInventory())
 qtm.Dispatch = LoadServerFile('dispatch', DetectDispatch())
+qtm.Log = LoadServerFile('log', Config.Logging)
 -- Shared stuff
 qtm.Notification = LoadSharedFile('notification', Config.Notifications)
 qtm.Logging = LoadSharedFile('logging', 'qtm')
