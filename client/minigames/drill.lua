@@ -3,10 +3,12 @@ Drilling = {
 	DisabledControls = {30,31,32,33,34,35},
 
 	Start = function(callback, discCount)
-	  local type = Config.Minigames.Drill
+		if discCount < 3 then
+			discCount = 3
+		end
 	  if not Drilling.Active then
 	    Drilling.Active = true
-	    Drilling.Init(type, discCount)
+	    Drilling.Init(Config.Minigames.Drill, discCount)
 	    Drilling.Update(callback)
 	  end
 	end,
