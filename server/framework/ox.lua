@@ -51,13 +51,9 @@ Framework = {
     ---@param jobName string
     ---@return boolean | nil
     DoesJobExist = function(jobName)
-        local query = "SELECT COUNT(*) AS count FROM ox_groups WHERE name = @jobName"
-        local result = MySQL.query.await(query, { ['@jobName'] = jobName })
-        if result and result[1].count > 0 then
-            return true
-        else
-            return false
-        end
+        local group = Ox.GetGroup(jobName)
+        if group then return true end
+        return false
     end,
     ---comment: Get players online of job table
     ---@param jobs table
