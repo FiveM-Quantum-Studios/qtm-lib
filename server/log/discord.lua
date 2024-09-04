@@ -19,6 +19,7 @@ end
 
 local Log = {
     Create = function(source, event, message, hook)
+        if not IsDuplicityVersion() then return end
         local playerName = GetPlayerName(source)
         local fullMessage = string.format("%s | %s: %s", playerName, event, message)
         sendToDiscord("Quantum Studios", fullMessage, hook)
