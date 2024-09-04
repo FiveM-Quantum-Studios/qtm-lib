@@ -51,14 +51,13 @@ Framework = {
     ---@param jobName string
     ---@return boolean | nil
     DoesJobExist = function(jobName)
-        -- local jobTable = ESX.GetJobs()
-        -- if not jobTable then return end
-        -- if lib.table.contains(jobTable, jobName) then
-        --     return true
-        -- else
-        --     return false
-        -- end
-        return false
+        local query = "SELECT COUNT(*) AS count FROM ox_groups WHERE name = @jobName"
+        local result = MySQL.query.await(query, { ['@jobName'] = jobName })
+        if result and result[1].count > 0 then
+            return true
+        else
+            return false
+        end
     end,
     ---comment: Get players online of job table
     ---@param jobs table
