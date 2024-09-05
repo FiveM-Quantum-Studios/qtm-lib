@@ -4,7 +4,7 @@ TextUI = {
         SendNUIMessage({
           type = 'show',
           text = text,
-          position = position
+          position = position or Config.TextUI.defaultPosition
         })
     end,
 
