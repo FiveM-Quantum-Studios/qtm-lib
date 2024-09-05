@@ -1,6 +1,6 @@
 TextUI = {
     ---@param text string
-    Show = function(text)
+    Show = function(text, position)
         exports['jg-textui']:DrawText(text)
     end,
 

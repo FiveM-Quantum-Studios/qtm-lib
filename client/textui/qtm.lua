@@ -1,9 +1,10 @@
 TextUI = {
     ---@param text string
-    Show = function(text)
+    Show = function(text, position)
         SendNUIMessage({
           type = 'show',
-          text = text
+          text = text,
+          position = position
         })
     end,
 
