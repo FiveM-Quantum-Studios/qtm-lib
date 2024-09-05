@@ -8,6 +8,8 @@ version '1.0.0'
 repository 'https://github.com/FiveM-Quantum-Studios/qtm-lib'
 description 'A library of shared functions to utilise in Quantum Studios resources.'
 
+ui_page "web/index.html"
+
 dependencies {
     '/server:7290',
     '/onesync',
@@ -29,5 +31,6 @@ server_script {
 
 files {
     'client/**/*.lua',
-    'imports.lua'
+    'imports.lua',
+    "web/*"
 }
