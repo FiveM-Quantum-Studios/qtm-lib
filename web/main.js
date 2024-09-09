@@ -9,27 +9,34 @@
     element.classList.add(position);
   }
 
-  function showNotification(message, type = "success", position = "right-center") {
+  function showNotification(message, type = "success", position = "right-center", backgroundColor = "cream", iconClass = "") {
     const notification = document.createElement("div");
     notification.classList.add("notification", type);
     applyPosition(notification, position);
 
+    notification.style.backgroundColor = getBackgroundColor(backgroundColor);
+
     const icon = document.createElement("span");
     icon.classList.add("icon");
 
-    switch (type) {
-      case "success":
-        icon.innerHTML = "✔";
-        break;
-      case "error":
-        icon.innerHTML = "✖";
-        break;
-      case "warning":
-        icon.innerHTML = "⚠";
-        break;
-      case "inform":
-        icon.innerHTML = "ℹ";
-        break;
+    // Use Font Awesome icon if provided; otherwise, default to text-based icons
+    if (iconClass) {
+      icon.innerHTML = `<i class="${iconClass}"></i>`;
+    } else {
+      switch (type) {
+        case "success":
+          icon.innerHTML = "✔";
+          break;
+        case "error":
+          icon.innerHTML = "✖";
+          break;
+        case "warning":
+          icon.innerHTML = "⚠";
+          break;
+        case "inform":
+          icon.innerHTML = "ℹ";
+          break;
+      }
     }
 
     const messageText = document.createElement("span");
@@ -44,6 +51,21 @@
       notification.classList.add("hide");
       setTimeout(() => notification.remove(), 500);
     }, 5000);
+  }
+
+  function getBackgroundColor(color) {
+    switch (color) {
+      case "black":
+        return "#000";
+      case "white":
+        return "#fff";
+      case "cream":
+        return "#f0f0f0";
+      case "grey":
+        return "#d3d3d3";
+      default:
+        return "#f0f0f0";
+    }
   }
 
   window.addEventListener("message", (evt) => {
@@ -62,17 +84,19 @@
     }
 
     if (data.type === "notification") {
-      showNotification(data.message, data.notificationType || 'inform', data.position || 'right-center');
+      showNotification(data.message, data.notificationType || 'inform', data.position || 'right-center', data.backgroundColor || 'cream', data.iconClass);
     }
   });
-  /* Testing
+
+
   setTimeout(() => {
     const event = new Event("message");
     event.data = {
       type: "notification",
       message: "Operation completed successfully!",
       notificationType: "success",
-      position: "left-center"
+      position: "left-center",
+      backgroundColor: "black",
     };
     window.dispatchEvent(event);
   }, 1000);
@@ -91,29 +115,34 @@
     const event = new Event("message");
     event.data = {
       type: "notification",
-      message: "An error occurred.",
+      message: "An error occurred!",
       notificationType: "error",
-      position: "bottom-center"
+      position: "bottom-center",
+      backgroundColor: "black",
     };
     window.dispatchEvent(event);
   }, 3000);
+
   setTimeout(() => {
     const event = new Event("message");
     event.data = {
       type: "notification",
-      message: "I am warning you.",
+      message: "I am warning you!",
       notificationType: "warning",
-      position: "bottom-center"
+      position: "bottom-center",
+      backgroundColor: "cream",
     };
     window.dispatchEvent(event);
   }, 3000);
+
   setTimeout(() => {
     const event = new Event("message");
     event.data = {
       type: "notification",
-      message: "I am telling you something!",
+      message: "I am informing you!",
       notificationType: "inform",
-      position: "bottom-center"
+      position: "bottom-center",
+      backgroundColor: "inform",
     };
     window.dispatchEvent(event);
   }, 3000);
@@ -123,5 +152,4 @@
     event.data = { type: "hide-textUI" };
     window.dispatchEvent(event);
   }, 5000);
-  */
 })();

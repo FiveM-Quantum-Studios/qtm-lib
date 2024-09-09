@@ -1,12 +1,12 @@
 local NotificationTypes = {
     ['success'] = 'success',
     ['error'] = 'error',
-    ['info'] = 'success',
-    ['warning'] = 'error',
+    ['info'] = 'inform',
+    ['warning'] = 'warning',
 }
 
 Notification = {
-    Notification = function(source, title, type, message)
+    Notification = function(source, title, type, message, position, colour, iconClass)
         local notitype = nil
         if lib.table.contains({'success', 'error', 'info', 'warning'}, type) then
             notitype = NotificationTypes[type]
@@ -14,12 +14,15 @@ Notification = {
             notitype = 'inform'
         end
         if IsDuplicityVersion() then -- serverside
-            -- Implement later
+            TriggerClientEvent("qtm-lib:client:notification", source, notitype, message, position, colour, iconClass)
         else
             SendNUIMessage({
                 type = "notification",
                 message = message,
-                notificationType = notitype  
+                notificationType = notitype,
+                position = position,
+                backgroundColor = colour,
+                iconClass = iconClass
             })
         end
     end

@@ -1,6 +1,18 @@
 local clientDir = 'client/%s/%s'
 local sharedDir = 'shared/%s/%s'
 
+RegisterNetEvent('qtm-lib:client:notification')
+AddEventHandler('qtm-lib:client:notification', function(notitype, message, position, colour, iconClass)
+    SendNUIMessage({
+        type = "notification",
+        message = message,
+        notificationType = notitype,
+        position = position,
+        backgroundColor = colour,
+        iconClass = iconClass
+    })
+end)
+
 function LoadClientFile(module, configuration)
     return lib.load(clientDir:format(module, string.lower(configuration)))
 end
