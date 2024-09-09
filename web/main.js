@@ -4,13 +4,11 @@
   notificationsContainer.classList.add("notifications");
   document.body.appendChild(notificationsContainer);
 
-  // Function to handle Text UI position
   function applyPosition(position = 'right-center') {
     textUI.classList.remove('right-center', 'left-center', 'top-center', 'bottom-center');
     textUI.classList.add(position);
   }
 
-  // Function to handle notifications
   function showNotification(message, type = "success") {
     const notification = document.createElement("div");
     notification.classList.add("notification", type);
@@ -27,10 +25,9 @@
     notification.appendChild(messageText);
     notificationsContainer.appendChild(notification);
 
-    // Automatically remove the notification after 5 seconds
     setTimeout(() => {
       notification.classList.add("hide");
-      setTimeout(() => notification.remove(), 500); // Delay removal for smooth transition
+      setTimeout(() => notification.remove(), 500); 
     }, 5000);
   }
 
@@ -54,7 +51,7 @@
     }
   });
 
-  // Simulated Example for Testing:
+  /*
   setTimeout(() => {
     const event = new Event("message");
     event.data = {
@@ -90,5 +87,5 @@
     event.data = { type: "hide-textUI" };
     window.dispatchEvent(event);
   }, 5000);
-
+ */
 })();
