@@ -68,7 +68,6 @@ body {
   font-size: 16px;
 }
 
-/* Notifications */
 .notifications {
   position: fixed;
   top: 20px;
@@ -101,6 +100,16 @@ body {
 .notification.error {
   border-color: #f44336;
   color: #f44336;
+}
+
+.notification.warning {
+  border-color: #beab00;
+  color: #beab00;
+}
+
+.notification.inform {
+  border-color: #2196f3;
+  color: #2196f3;
 }
 
 .notification .icon {
