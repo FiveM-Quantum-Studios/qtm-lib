@@ -19,22 +19,21 @@
     const icon = document.createElement("span");
     icon.classList.add("icon");
 
-    // Use Font Awesome icon if provided; otherwise, default to text-based icons
     if (iconClass) {
       icon.innerHTML = `<i class="${iconClass}"></i>`;
     } else {
       switch (type) {
         case "success":
-          icon.innerHTML = "✔";
+          icon.innerHTML = `<i class="fa-solid fa-check"></i>`;
           break;
         case "error":
-          icon.innerHTML = "✖";
+          icon.innerHTML = `<i class="fa-solid fa-xmark"></i>`;
           break;
         case "warning":
-          icon.innerHTML = "⚠";
+          icon.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i>`;
           break;
         case "inform":
-          icon.innerHTML = "ℹ";
+          icon.innerHTML = `<i class="fa-solid fa-circle-info"></i>`; // <i class="fa-solid fa-info"></i>
           break;
       }
     }
@@ -87,8 +86,7 @@
       showNotification(data.message, data.notificationType || 'inform', data.position || 'right-center', data.backgroundColor || 'cream', data.iconClass);
     }
   });
-
-
+  /*
   setTimeout(() => {
     const event = new Event("message");
     event.data = {
@@ -96,7 +94,7 @@
       message: "Operation completed successfully!",
       notificationType: "success",
       position: "left-center",
-      backgroundColor: "black",
+  
     };
     window.dispatchEvent(event);
   }, 1000);
@@ -118,7 +116,6 @@
       message: "An error occurred!",
       notificationType: "error",
       position: "bottom-center",
-      backgroundColor: "black",
     };
     window.dispatchEvent(event);
   }, 3000);
@@ -130,7 +127,6 @@
       message: "I am warning you!",
       notificationType: "warning",
       position: "bottom-center",
-      backgroundColor: "cream",
     };
     window.dispatchEvent(event);
   }, 3000);
@@ -142,7 +138,6 @@
       message: "I am informing you!",
       notificationType: "inform",
       position: "bottom-center",
-      backgroundColor: "inform",
     };
     window.dispatchEvent(event);
   }, 3000);
@@ -152,4 +147,5 @@
     event.data = { type: "hide-textUI" };
     window.dispatchEvent(event);
   }, 5000);
+  */
 })();

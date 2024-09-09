@@ -13,7 +13,7 @@ Notification = {
         else
             notitype = 'inform'
         end
-        if IsDuplicityVersion() then -- serverside
+        if IsDuplicityVersion() then
             TriggerClientEvent("qtm-lib:client:notification", source, notitype, message, position, colour, iconClass)
         else
             SendNUIMessage({
