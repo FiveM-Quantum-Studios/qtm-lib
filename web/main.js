@@ -1,9 +1,37 @@
 (function () {
   const textUI = document.querySelector(".text-ui");
+  const notificationsContainer = document.createElement("div");
+  notificationsContainer.classList.add("notifications");
+  document.body.appendChild(notificationsContainer);
 
+  // Function to handle Text UI position
   function applyPosition(position = 'right-center') {
     textUI.classList.remove('right-center', 'left-center', 'top-center', 'bottom-center');
     textUI.classList.add(position);
+  }
+
+  // Function to handle notifications
+  function showNotification(message, type = "success") {
+    const notification = document.createElement("div");
+    notification.classList.add("notification", type);
+
+    const icon = document.createElement("span");
+    icon.classList.add("icon");
+    icon.innerHTML = type === "success" ? "✔" : "✖";
+
+    const messageText = document.createElement("span");
+    messageText.classList.add("message");
+    messageText.textContent = message;
+
+    notification.appendChild(icon);
+    notification.appendChild(messageText);
+    notificationsContainer.appendChild(notification);
+
+    // Automatically remove the notification after 5 seconds
+    setTimeout(() => {
+      notification.classList.add("hide");
+      setTimeout(() => notification.remove(), 500); // Delay removal for smooth transition
+    }, 5000);
   }
 
   window.addEventListener("message", (evt) => {
@@ -11,28 +39,56 @@
 
     if (!data) return;
 
-    if (data.type === "show") {
+    if (data.type === "show-textUI") {
       applyPosition(data.position);
       
       const str = data.text.replace(/\[(.+?)\]/g, (_, key) => `<kbd>${key}</kbd>`);
       textUI.innerHTML = str;
       textUI.classList.add("visible");
-    } else if (data.type === "hide") {
+    } else if (data.type === "hide-textUI") {
       textUI.classList.remove("visible");
+    }
+
+    if (data.type === "notification") {
+      showNotification(data.message, data.notificationType);
     }
   });
 
-    /* 
-  function simulateShowMessage(text, position = 'right-center') {
+  // Simulated Example for Testing:
+  setTimeout(() => {
     const event = new Event("message");
     event.data = {
-      type: "show",
-      text: text,
-      position: position
+      type: "notification",
+      message: "Operation completed successfully!",
+      notificationType: "success",
     };
     window.dispatchEvent(event);
-  }
+  }, 1000);
+
   setTimeout(() => {
-    simulateShowMessage("Press [E] to interact", "left-center");
-  }, 1000);*/
+    const event = new Event("message");
+    event.data = {
+      type: "show-textUI",
+      text: "Press [E] to interact",
+      position: "left-center"
+    };
+    window.dispatchEvent(event);
+  }, 2000);
+
+  setTimeout(() => {
+    const event = new Event("message");
+    event.data = {
+      type: "notification",
+      message: "An error occurred.",
+      notificationType: "error",
+    };
+    window.dispatchEvent(event);
+  }, 3000);
+
+  setTimeout(() => {
+    const event = new Event("message");
+    event.data = { type: "hide-textUI" };
+    window.dispatchEvent(event);
+  }, 5000);
+
 })();

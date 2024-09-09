@@ -67,3 +67,52 @@ body {
   margin-right: 5px;
   font-size: 16px;
 }
+
+/* Notifications */
+.notifications {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.notification {
+  background: #f0f0f0;
+  border: 2px solid #2c2c2c;
+  padding: 12px 20px;
+  border-radius: 12px;
+  color: #1a1a1a;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  opacity: 1;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.notification.success {
+  border-color: #4caf50;
+  color: #4caf50;
+}
+
+.notification.error {
+  border-color: #f44336;
+  color: #f44336;
+}
+
+.notification .icon {
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.notification .message {
+  flex-grow: 1;
+}
+
+.notification.hide {
+  opacity: 0;
+  transform: translateX(100%);
+}
