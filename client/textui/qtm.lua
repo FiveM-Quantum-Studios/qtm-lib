@@ -2,7 +2,7 @@ TextUI = {
     ---@param text string
     Show = function(text, position)
         SendNUIMessage({
-          type = 'show',
+          type = 'show-textUI',
           text = text,
           position = position or Config.TextUI.defaultPosition
         })
@@ -10,7 +10,7 @@ TextUI = {
 
     Hide = function()
         SendNUIMessage({
-            type = 'hide'
+            type = 'hide-textUI'
         })
     end
 }
