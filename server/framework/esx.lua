@@ -43,12 +43,13 @@ Framework = {
     ---@return table | nil
     GetJob = function(source)
         local player = ESX.GetPlayerFromId(source)
+        print(player.getJob().grade_level)
         if not player then return end
         return {
             name = player.getJob().name,
             label = player.getJob().label,
             grade_label = player.getJob().grade_label,
-            grade_level = player.getJob().grade_level,
+            grade_level = player.getJob().grade,
             grade_payment = player.getJob().grade_salary
         }
     end,
