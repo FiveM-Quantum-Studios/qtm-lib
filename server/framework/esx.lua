@@ -65,6 +65,36 @@ Framework = {
             return false
         end
     end,
+    Society = {
+        ---comment: Add money to society
+        ---@param society string
+        ---@param amount number
+        AddMoney = function(society, amount)
+            if not society or not GetInvokingResource() then return end
+            TriggerEvent('esx_addonaccount:getSharedAccount', society, function(account)
+                account.addMoney(amount)
+            end)
+        end,
+        ---comment: Remove money from society
+        ---@param society string
+        ---@param amount number
+        RemoveMoney = function(society, amount)
+            if not society or not GetInvokingResource() then return end
+            TriggerEvent('esx_addonaccount:getSharedAccount', society, function(account)
+                account.removeMoney(amount)
+            end)
+        end,
+        ---comment: Get money from society
+        ---@param society string
+        ---@return number
+        GetMoney = function(society)
+            if not society or not GetInvokingResource() then return 0 end
+            TriggerEvent('esx_addonaccount:getSharedAccount', society, function(account)
+                return account.money
+                ---@diagnostic disable-next-line: missing-return
+            end)
+        end
+    },
     ---comment: Get players online of job table
     ---@param jobs table
     ---@return number

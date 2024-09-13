@@ -55,6 +55,29 @@ Framework = {
         if group then return true end
         return false
     end,
+    Society = {
+        ---comment: Add money to society
+        ---@param society string
+        ---@param amount number
+        AddMoney = function(society, amount)
+            if not society or not GetInvokingResource() then return end
+            --Dont know the ox_banking stuff
+        end,
+        ---comment: Remove money from society
+        ---@param society string
+        ---@param amount number
+        RemoveMoney = function(society, amount)
+            if not society or not GetInvokingResource() then return end
+            --Dont know the ox_banking stuff
+        end,
+        ---comment: Get money from society
+        ---@param society string
+        ---@return number
+        GetMoney = function(society)
+            if not society or not GetInvokingResource() then return 0 end
+            return 0 --Dont know the ox_banking stuff
+        end
+    },
     ---comment: Get players online of job table
     ---@param jobs table
     ---@return number
