@@ -71,6 +71,24 @@ function DetectDispatch()
     return dispatch
 end
 
+function DetectBilling()
+    local billing = nil
+    if GetResourceState('okokBilling') == 'started' then
+        billing = 'okok'
+    elseif GetResourceState('qs-billing') == 'started' then
+        billing = 'qs'
+    elseif GetResourceState('es_extended') == 'started' then
+        billing = 'esx'
+    elseif GetResourceState('qbx_core') == 'started' then
+        billing = 'qbx_core'
+    end
+    if not billing then
+        billing = 'custom'
+    end
+    Logging('debug', 'Billing: '..billing..' detected')
+    return billing
+end
+
 qtm = {}
 -- Server stuff
 qtm.Framework = LoadServerFile('framework', DetectFramework())
@@ -78,6 +96,7 @@ qtm.Inventory = LoadServerFile('inventory', DetectInventory())
 qtm.Server = {
     Dispatch = LoadServerFile('dispatch', DetectDispatch())
 }
+qtm.Billing = LoadServerFile('billing', DetectBilling())
 qtm.Log = LoadServerFile('log', Config.Logging)
 -- Shared stuff
 qtm.Notification = LoadSharedFile('notification', Config.Notifications)
