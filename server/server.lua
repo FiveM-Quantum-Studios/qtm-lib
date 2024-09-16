@@ -77,6 +77,8 @@ function DetectBilling()
         billing = 'okok'
     elseif GetResourceState('qs-billing') == 'started' then
         billing = 'qs'
+    elseif GetResourceState('cs_billing') == 'started' then
+        billing = 'cs'
     elseif GetResourceState('es_extended') == 'started' then
         billing = 'esx'
     elseif GetResourceState('qbx_core') == 'started' then
