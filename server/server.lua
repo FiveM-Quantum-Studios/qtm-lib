@@ -96,7 +96,8 @@ qtm = {}
 qtm.Framework = LoadServerFile('framework', DetectFramework())
 qtm.Inventory = LoadServerFile('inventory', DetectInventory())
 qtm.Server = {
-    Dispatch = LoadServerFile('dispatch', DetectDispatch())
+    Dispatch = LoadServerFile('dispatch', DetectDispatch()),
+    Anticheat = LoadServerFile('utils', 'anticheat')
 }
 qtm.Billing = LoadServerFile('billing', DetectBilling())
 qtm.Log = LoadServerFile('log', Config.Logging)
