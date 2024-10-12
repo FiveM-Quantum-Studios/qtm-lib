@@ -1,14 +1,14 @@
 Versioncheck = {
     githubURL      = "https://raw.githubusercontent.com/%s/%s/main/%s",
     downloadURL    = "https://keymaster.fivem.net/",
-    coloredName    = ("[^2%s^0]").format(GetInvokingResource() or "qtm-lib"),
+    coloredName    = ("[^2%s^0]").format("qtm-lib"),
 
-    -- Messages for Version Checks
-    renameWarning       = coloredName .. "^3 [WARNING] Resource must be named ^0%s^3 to prevent errors.",
-    checkFailed         = coloredName .. "^1 [ERROR] Version check failed! HTTP Error: %s^0. ^3Update to the latest version.^0",
-    betaVersion         = coloredName .. "^3 [WARNING] Beta version detected. ^5Current:^0 %s - ^5Latest:^0 %s",
-    updateAvailable     = coloredName .. "^3 [Update Available] ^5Current:^0 %s - ^5Latest:^0 %s\n" .. coloredName .. "^5 Download:^4 %s ^0",
+    currentResName, coloredName, renameWarning, checkFailed, betaVersion, updateAvailable = nil, nil, nil, nil, nil, nil,
 
+    ---comment: Split string
+    ---@param str string
+    ---@param delimiter string
+    ---@return table
     splitString = function(str, delimiter)
         local result = {}
         for match in str:gmatch("([^"..delimiter.."]+)") do
@@ -17,7 +17,10 @@ Versioncheck = {
         return result
     end,
 
-    -- Version Check Callback
+    ---comment: Check version callback
+    ---@param status number
+    ---@param response string
+    ---@param headers table
     CheckVersionCallback = function(status, response, headers)
         if status ~= 200 then
             print(checkFailed:format(status))
@@ -26,7 +29,8 @@ Versioncheck = {
 
         local decodedResponse = json.decode(response)
         local latestVersion = decodedResponse[1].version
-        local currentVersion = GetResourceMetadata(GetCurrentResourceName(), "version")
+        ---@diagnostic disable-next-line: missing-parameter
+        local currentVersion = GetResourceMetadata(currentResName, "version")
 
         if currentVersion == latestVersion then return end
 
@@ -53,9 +57,18 @@ Versioncheck = {
         end
     end,
 
+    ---comment: Version checker
+    ---@param resourceName string
     VersionChecker = function(resourceName)
         CreateThread(function()
-            if GetInvokingResource() ~= resourceName then
+            currentResName      = GetInvokingResource()
+            coloredName         = ("[^2%s^0]").format(currentResName or "qtm-lib")
+            renameWarning       = coloredName .. "^3 [WARNING] Resource must be named ^0%s^3 to prevent errors."
+            checkFailed         = coloredName .. "^1 [ERROR] Version check failed! HTTP Error: %s^0. ^3Update to the latest version.^0"
+            betaVersion         = coloredName .. "^3 [WARNING] Beta version detected. ^5Current:^0 %s - ^5Latest:^0 %s"
+            updateAvailable     = coloredName .. "^3 [Update Available] ^5Current:^0 %s - ^5Latest:^0 %s\n" .. coloredName .. "^5 Download:^4 %s ^0"
+
+            if currentResName ~= resourceName then
                 print(renameWarning.format(resourceName))
             end
             PerformHttpRequest(githubURL.format("FiveM-Quantum-Studios", "VERSIONS", resourceName..".json"), Versioncheck.CheckVersionCallback)
