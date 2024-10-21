@@ -30,17 +30,15 @@ Versioncheck = {
             print(checkFailed:format(status))
             return
         end
-
+        
         local decodedResponse = json.decode(response)
         local latestVersion = decodedResponse[1].version
-        ---@diagnostic disable-next-line: missing-parameter
-        local currentVersion = GetResourceMetadata(currentResName, "version")
+        local currentVersion = GetResourceMetadata(currentResName, "version", 0)
 
         if currentVersion == latestVersion then return end
 
         local currentParts = Versioncheck.splitString(currentVersion, '.')
         local latestParts = Versioncheck.splitString(latestVersion, '.')
-
         for i = 1, #currentParts do
             if currentParts[i] > latestParts[i] then
                 print(betaVersion:format(currentVersion, latestVersion))
@@ -53,7 +51,7 @@ Versioncheck = {
                     print(("%s ^3[Changelog v%s]^0"):format(coloredName, versionInfo.version))
 
                     for _, changelog in ipairs(versionInfo.changelogs) do
-                        print(changelog)
+                        qtm.Logging('debug', changelog)
                     end
                 end
                 break
@@ -64,15 +62,12 @@ Versioncheck = {
     ---comment: Version checker
     ---@param resourceName string
     VersionChecker = function(resourceName)
-        CreateThread(function()
-            currentResName      = GetInvokingResource()
-            coloredName         = ("[^2%s^0]").format(currentResName or "qtm-lib")
-            if currentResName ~= resourceName then
-                print(renameWarning.format(resourceName))
-            end
-            PerformHttpRequest(githubURL.format("FiveM-Quantum-Studios", "VERSIONS", resourceName..".json"), Versioncheck.CheckVersionCallback)
-            print(githubURL.format("FiveM-Quantum-Studios", "VERSIONS", resourceName..".json"), Versioncheck.CheckVersionCallback)
-        end)
+        currentResName      = GetInvokingResource()
+        coloredName         = ("[^2%s^0]").format(currentResName or "qtm-lib")
+        if currentResName ~= resourceName then
+            print(renameWarning.format(resourceName))
+        end
+        PerformHttpRequest(string.format(githubURL, "FiveM-Quantum-Studios", "VERSIONS", resourceName..".json"), Versioncheck.CheckVersionCallback)
     end
 }
 
