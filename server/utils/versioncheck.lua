@@ -1,9 +1,13 @@
-Versioncheck = {
-    githubURL      = "https://raw.githubusercontent.com/%s/%s/main/%s",
-    downloadURL    = "https://keymaster.fivem.net/",
-    coloredName    = ("[^2%s^0]").format("qtm-lib"),
+local githubURL         = "https://raw.githubusercontent.com/%s/%s/main/%s"
+local downloadURL       = "https://keymaster.fivem.net/"
+local coloredName       = ("[^2%s^0]").format("qtm-lib")
+local renameWarning     = coloredName .. "^3 [WARNING] Resource must be named ^0%s^3 to prevent errors."
+local checkFailed       = coloredName .. "^1 [ERROR] Version check failed! HTTP Error: %s^0. ^3Update to the latest version.^0"
+local betaVersion       = coloredName .. "^3 [WARNING] Beta version detected. ^5Current:^0 %s - ^5Latest:^0 %s"
+local updateAvailable   = coloredName .. "^3 [Update Available] ^5Current:^0 %s - ^5Latest:^0 %s\n" .. coloredName .. "^5 Download:^4 %s ^0"
+local currentResName
 
-    currentResName, coloredName, renameWarning, checkFailed, betaVersion, updateAvailable = nil, nil, nil, nil, nil, nil,
+Versioncheck = {
 
     ---comment: Split string
     ---@param str string
@@ -63,11 +67,6 @@ Versioncheck = {
         CreateThread(function()
             currentResName      = GetInvokingResource()
             coloredName         = ("[^2%s^0]").format(currentResName or "qtm-lib")
-            renameWarning       = coloredName .. "^3 [WARNING] Resource must be named ^0%s^3 to prevent errors."
-            checkFailed         = coloredName .. "^1 [ERROR] Version check failed! HTTP Error: %s^0. ^3Update to the latest version.^0"
-            betaVersion         = coloredName .. "^3 [WARNING] Beta version detected. ^5Current:^0 %s - ^5Latest:^0 %s"
-            updateAvailable     = coloredName .. "^3 [Update Available] ^5Current:^0 %s - ^5Latest:^0 %s\n" .. coloredName .. "^5 Download:^4 %s ^0"
-
             if currentResName ~= resourceName then
                 print(renameWarning.format(resourceName))
             end
