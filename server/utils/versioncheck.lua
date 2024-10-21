@@ -71,6 +71,7 @@ Versioncheck = {
                 print(renameWarning.format(resourceName))
             end
             PerformHttpRequest(githubURL.format("FiveM-Quantum-Studios", "VERSIONS", resourceName..".json"), Versioncheck.CheckVersionCallback)
+            print(githubURL.format("FiveM-Quantum-Studios", "VERSIONS", resourceName..".json"), Versioncheck.CheckVersionCallback)
         end)
     end
 }
