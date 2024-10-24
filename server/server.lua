@@ -47,6 +47,8 @@ function DetectInventory()
         inventory = 'ox'
     elseif GetResourceState('qs-inventory') == 'started' then
         inventory = 'qs'
+    elseif GetResourceState('origen_inventory') == 'started' then
+        inventory = 'origen_inventory'
     end
     if not inventory then
         inventory = 'custom'
