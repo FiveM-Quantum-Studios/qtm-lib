@@ -109,7 +109,7 @@ qtm.Log = LoadServerFile('log', Config.Logging)
 -- Shared stuff
 qtm.Notification = LoadSharedFile('notification', Config.Notifications)
 qtm.Logging = LoadSharedFile('logging', 'qtm')
-qtm.DumpTable = LoadSharedFile('dumpTable', 'qtm')
+qtm.DumpTable = LoadSharedFile('dumptable', 'qtm')
 
 local qtm_meta = {
     __index = function(table, key)
