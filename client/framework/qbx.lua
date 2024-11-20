@@ -19,6 +19,46 @@ Framework = {
     SpawnVehicle = function(model, pos, heading, cb, networked)
         local result = lib.callback.await('qtm-lib:SpawnVehicle', false, model, pos)
         cb(NetToVeh(result))
+    end,
+    ---@return table | nil
+    GetJob = function()
+        local playerData = QBCore.Functions.GetPlayerData()
+        if not playerData then return end
+
+        local job = playerData.job
+        return {
+            name = job.name,
+            label = job.label,
+            grade_label = job.grade.name,
+            grade_level = job.grade.level,
+        }
+    end,
+    ---comment: Check if player has job
+    ---@param jobNames string | table
+    ---@return boolean
+    HasPlayerJob = function(jobNames)
+        local playerData = QBCore.Functions.GetPlayerData()
+
+        if type(jobNames) == "table" then
+            for _, jobName in pairs(jobNames) do
+                if playerData.job.name == jobName then
+                    return true
+                end
+            end
+        else
+            return playerData.job.name == jobNames
+        end
+
+        return false
+    end,
+
+
+    ---comment: Resets player hunger and thirst
+    HealStatus = function()
+        local playerData = QBCore.Functions.GetPlayerData()
+
+        TriggerServerEvent('consumables:server:addHunger', playerData.metadata.hunger + 100000)
+        TriggerServerEvent('consumables:server:addThirst', playerData.metadata.hunger + 100000)
     end
 }
 

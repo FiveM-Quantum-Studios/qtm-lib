@@ -59,6 +59,23 @@ Framework = {
             return false
         end
     end,
+    ---comment: Check if player has job
+    ---@param jobNames string | table
+    ---@return boolean | nil
+    HasPlayerJob = function(jobNames)
+        local player = exports.qbx_core:GetPlayer(target)
+        if not player then return end
+    
+        if type(jobNames) == "table" then
+            for index, jobName in pairs(jobNames) do
+                if player.PlayerData.job.name == jobName then return true end
+            end
+        else
+            return player.PlayerData.job.name == jobNames
+        end
+    
+        return false
+    end,
     Society = {
         ---comment: Add money to society
         ---@param society string
@@ -116,6 +133,15 @@ Framework = {
     ---@return boolean | nil
     HasGroup = function(source, group)
         return exports.qbx_core:HasPermission(source, group)
+    end,
+    ---comment: Get if player is dead
+    ---@param source string
+    ---@return integer | nil
+    GetDeathStatus = function(source)
+        local Player = QBCore.Functions.GetPlayer(target)
+        if not Player then return end
+        
+        return Player.PlayerData.metadata['isdead']
     end,
     ---comment: Spawn vehicle
     ---@param source string

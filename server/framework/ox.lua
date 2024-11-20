@@ -55,6 +55,12 @@ Framework = {
         if group then return true end
         return false
     end,
+    ---comment: Check if player has job
+    ---@param jobNames string | table
+    ---@return boolean | nil
+    HasPlayerJob = function(jobNames)
+        return false
+    end,
     Society = {
         ---comment: Add money to society
         ---@param society string
@@ -111,6 +117,15 @@ Framework = {
         local player = Ox.GetPlayer(source)
         if not player then return end
         return player.getGroup() == group
+    end,
+    ---comment: Get if player is dead
+    ---@param source string
+    ---@return integer | nil
+    GetDeathStatus = function(source)
+        local player = Ox.GetPlayer(source)
+        if not player then return end
+        
+        return player.metadata.isDead
     end,
     ---comment: Spawn vehicle
     ---@param source string

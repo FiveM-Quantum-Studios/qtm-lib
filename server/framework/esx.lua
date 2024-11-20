@@ -65,6 +65,22 @@ Framework = {
             return false
         end
     end,
+    ---comment: Check if player has job
+    ---@param jobNames string | table
+    ---@return boolean | nil
+    HasPlayerJob = function(jobNames)
+        local player = ESX.GetPlayerFromId(target)
+        if not player then return end
+        if type(jobNames) == "table" then
+            for index, jobName in pairs(jobNames) do
+                if player.job.name == jobName then return true end
+            end
+        else
+            return player.job.name == jobNames
+        end
+    
+        return false
+    end,
     Society = {
         ---comment: Add money to society
         ---@param society string
@@ -137,6 +153,19 @@ Framework = {
         if not player then return end
         return player.getGroup() == group
     end,
+    ---comment: Get if player is dead
+    ---@param source string
+    ---@return integer | nil
+    GetDeathStatus = function(source)
+        local player = ESX.GetPlayerFromId(source)
+        if not player then return end
+    
+        local isDead = MySQL.scalar.await('SELECT `is_dead` FROM `users` WHERE `identifier` = ? LIMIT 1', {
+            player.identifier
+        })
+    
+        return isDead
+    end
 }
 
 RegisterNetEvent('esx:playerDropped', function(playerId, reason)

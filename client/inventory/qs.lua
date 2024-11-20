@@ -30,7 +30,20 @@ Inventory = {
             results[#results + 1] = items
         end
         return results
-    end
+    end,
+    ---comment: Has player specific item count
+    ---@param table string | table
+    ---@param _quantity integer
+    ---@return boolean
+    HasItemCount = function(table, _quantity)
+        local quantity = _quantity or 1
+        local results = {} 
+        for i = 1, #table do
+            local items = exports['qs-inventory']:Search(table[i])
+            results[#results + 1] = items
+        end
+        return results >= quantity
+    end,
 }
 
 return Inventory

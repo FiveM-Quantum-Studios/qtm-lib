@@ -23,11 +23,18 @@ Inventory = {
         return ox_inventory:weaponWheel(bool)
     end,
     ---comment: Search for items
-    ---@param table any
+    ---@param table string | table
     ---@return table
     Search = function(table)
-        local items = ox_inventory:Search('count', {table})
-        return items
+        return ox_inventory:Search('count', {table})
+    end,
+    ---comment: Has player specific item count
+    ---@param table string | table
+    ---@param _quantity integer
+    ---@return boolean
+    HasItemCount = function(table, _quantity)
+        local quantity = _quantity or 1
+        return ox_inventory:Search('count', {table}) >= quantity
     end,
 }
 

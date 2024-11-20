@@ -11,6 +11,30 @@ Framework = {
     SpawnVehicle = function(model, pos, heading, cb, networked)
         local result = lib.callback.await('qtm-lib:SpawnVehicle', false, model, pos, heading)
         cb(NetToVeh(result))
+    end,
+    ---@return table | nil
+    GetJob = function()
+
+        if not player then return end
+
+        return {
+            name = nil,
+            label = nil,
+            grade_label = nil,
+            grade_level = nil,
+        }
+    end,
+    ---comment: Check if player has job
+    ---@param jobNames string | table
+    ---@return boolean
+    HasPlayerJob = function(jobNames)
+        return false
+    end,
+
+
+    ---comment: Resets player hunger and thirst
+    HealStatus = function()
+
     end
 }
 
