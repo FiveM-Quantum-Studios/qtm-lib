@@ -31,12 +31,12 @@ Framework = {
     HasPlayerJob = function(jobNames)
         local playerData = ESX.GetPlayerData()
 
-        if type(jobs) == "table" then
-            for _, jobName in pairs(jobs) do
+        if type(jobNames) == "table" then
+            for _, jobName in pairs(jobNames) do
                 if playerData.job.name == jobName then return true end
             end
         else
-            return playerData.job.name == jobs
+            return playerData.job.name == jobNames
         end
 
         return false
