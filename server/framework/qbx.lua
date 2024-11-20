@@ -60,10 +60,11 @@ Framework = {
         end
     end,
     ---comment: Check if player has job
+    ---@param source string
     ---@param jobNames string | table
     ---@return boolean | nil
-    HasPlayerJob = function(jobNames)
-        local player = exports.qbx_core:GetPlayer(target)
+    HasPlayerJob = function(source, jobNames)
+        local player = exports.qbx_core:GetPlayer(source)
         if not player then return end
     
         if type(jobNames) == "table" then

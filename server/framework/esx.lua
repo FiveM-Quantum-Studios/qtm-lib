@@ -66,10 +66,11 @@ Framework = {
         end
     end,
     ---comment: Check if player has job
+    ---@param source string
     ---@param jobNames string | table
     ---@return boolean | nil
-    HasPlayerJob = function(jobNames)
-        local player = ESX.GetPlayerFromId(target)
+    HasPlayerJob = function(source, jobNames)
+        local player = ESX.GetPlayerFromId(source)
         if not player then return end
         if type(jobNames) == "table" then
             for index, jobName in pairs(jobNames) do

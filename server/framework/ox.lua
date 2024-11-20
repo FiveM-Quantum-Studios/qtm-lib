@@ -56,9 +56,10 @@ Framework = {
         return false
     end,
     ---comment: Check if player has job
+    ---@param source string
     ---@param jobNames string | table
     ---@return boolean | nil
-    HasPlayerJob = function(jobNames)
+    HasPlayerJob = function(source, jobNames)
         return false
     end,
     Society = {
