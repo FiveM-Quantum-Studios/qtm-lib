@@ -43,7 +43,6 @@ Framework = {
     ---@return table | nil
     GetJob = function(source)
         local player = ESX.GetPlayerFromId(source)
-        print(player.getJob().grade_level)
         if not player then return end
         return {
             name = player.getJob().name,
@@ -88,7 +87,7 @@ Framework = {
         ---@param amount number
         AddMoney = function(society, amount)
             if not society or not GetInvokingResource() then return end
-            TriggerEvent('esx_addonaccount:getSharedAccount', society, function(account)
+            TriggerEvent('esx_addonaccount:getSharedAccount', ('society_%s'):format(society), function(account)
                 account.addMoney(amount)
             end)
         end,
@@ -97,7 +96,7 @@ Framework = {
         ---@param amount number
         RemoveMoney = function(society, amount)
             if not society or not GetInvokingResource() then return end
-            TriggerEvent('esx_addonaccount:getSharedAccount', society, function(account)
+            TriggerEvent('esx_addonaccount:getSharedAccount', ('society_%s'):format(society), function(account)
                 account.removeMoney(amount)
             end)
         end,
@@ -106,7 +105,7 @@ Framework = {
         ---@return number
         GetMoney = function(society)
             if not society or not GetInvokingResource() then return 0 end
-            TriggerEvent('esx_addonaccount:getSharedAccount', society, function(account)
+            TriggerEvent('esx_addonaccount:getSharedAccount', ('society_%s'):format(society), function(account)
                 return account.money
                 ---@diagnostic disable-next-line: missing-return
             end)
