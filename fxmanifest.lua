@@ -4,7 +4,7 @@ lua54 'yes'
 
 name 'qtm-lib'
 author 'Quantum Studios'
-version '1.0.3'
+version '1.0.4'
 repository 'https://github.com/FiveM-Quantum-Studios/qtm-lib'
 description 'A library of shared functions to utilise in Quantum Studios resources.'
 

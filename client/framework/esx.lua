@@ -41,6 +41,11 @@ Framework = {
 
         return false
     end,
+    ---comment: Get job online members
+    ---@param jobs table 
+    GetJobOnlineMembers = function(jobs)
+        return lib.callback.await('qtm-lib:GetJobOnlineMembers', false, jobs)
+    end,
 
 
     ---comment: Resets player hunger and thirst

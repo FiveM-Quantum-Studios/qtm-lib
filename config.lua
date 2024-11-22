@@ -14,3 +14,5 @@ Config.TextUI = {
 Config.Minigames = {
     Drill = "VAULT_DRILL" -- "VAULT_DRILL" or "VAULT_LAZER"
 }
+
+Config.DisableIdleCam = true

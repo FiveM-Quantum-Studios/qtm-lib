@@ -128,6 +128,13 @@ Framework = {
         end
         return count
     end,
+    ---comment: Get job online members
+    ---@param source string
+    ---@param jobs table
+    ---@return number | nil
+    lib.callback.register('qtm-lib:GetJobOnlineMembers', function(source, jobs)
+        return GetJobOnlineMembers(jobs)
+    end),
     ---comment: Get player position
     ---@param source string
     ---@return vector3 | nil
