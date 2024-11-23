@@ -23,7 +23,8 @@ shared_scripts {
 }
 
 client_scripts {
-    'client/client.lua'
+    'client/client.lua',
+    'client/utils/idleCam.lua'
 }
 server_script {
   'server/server.lua'

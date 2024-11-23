@@ -14,7 +14,7 @@ Framework = {
     end,
     ---comment: Get player id from identifier
     ---@param identifier string
-    ---@return number | false
+    ---@return string | false
     GetIdentifierID = function(identifier)
         local player = ESX.GetPlayerFromIdentifier(identifier)
         if not player then return false end
@@ -34,6 +34,20 @@ Framework = {
             dateofbirth = player.get('dateofbirth'),
         }
     end,
+    ---comment: Callback to receive GetChar on client
+    ---@param src string
+    ---@param targetSource string
+    ---@return table | nil
+    lib.callback.register('qtm-lib:GetChar', function(src, targetSource)
+        return Framework.GetChar(targetSource)
+    end),
+    ---comment: Callback to receive GetChar on client
+    ---@param src string
+    ---@param targetIdentifier string
+    ---@return table | nil
+    lib.callback.register('qtm-lib:GetChar', function(src, targetIdentifier)
+        return Framework.GetChar(Framework.GetIdentifierID(targetIdentifier))
+    end),
     ---comment: Get all players
     ---@return table
     GetPlayers = function()
@@ -133,7 +147,7 @@ Framework = {
     ---@param jobs table
     ---@return number | nil
     lib.callback.register('qtm-lib:GetJobOnlineMembers', function(source, jobs)
-        return GetJobOnlineMembers(jobs)
+        return Framework.GetJobOnlineMembers(jobs)
     end),
     ---comment: Get player position
     ---@param source string

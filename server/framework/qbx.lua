@@ -9,7 +9,7 @@ Framework = {
     end,
     ---comment: Get player id from identifier
     ---@param identifier string
-    ---@return number | false
+    ---@return string | false
     GetIdentifierID = function(identifier)
         local player = exports.qbx_core:GetPlayerByCitizenId(identifier)
         if not player then return false end
@@ -19,16 +19,30 @@ Framework = {
     ---@param source string
     ---@return table | nil
     GetChar = function(source)
-        local player = exports.qbx_core:GetPlayer(source)
+        local player = exports.qbx_core:GetPlayer(source).PlayerData.charinfo
         if not player then return end
         return {
-            firstname = player.PlayerData.charinfo.firstname,
-            lastname = player.PlayerData.charinfo.lastname,
-            fullname = ("%s %s"):format(player.PlayerData.charinfo.firstname, player.PlayerData.charinfo.lastname),
-            gender = player.PlayerData.charinfo.gender,
-            dateofbirth = player.PlayerData.charinfo.birthdate,
+            firstname = player.firstname,
+            lastname = player.lastname,
+            fullname = ("%s %s"):format(player.firstname, player.lastname),
+            gender = player.gender,
+            dateofbirth = player.birthdate,
         }
     end,
+    ---comment: Callback to receive GetChar on client
+    ---@param src string
+    ---@param targetSource string
+    ---@return table | nil
+    lib.callback.register('qtm-lib:GetChar', function(src, targetSource)
+        return Framework.GetChar(targetSource)
+    end),
+    ---comment: Callback to receive GetChar on client
+    ---@param src string
+    ---@param targetIdentifier string
+    ---@return table | nil
+    lib.callback.register('qtm-lib:GetChar', function(src, targetIdentifier)
+        return Framework.GetChar(Framework.GetIdentifierID(targetIdentifier))
+    end),
     ---comment: Get all players
     ---@return table
     GetPlayers = function()
@@ -117,7 +131,7 @@ Framework = {
     ---@param jobs table
     ---@return number | nil
     lib.callback.register('qtm-lib:GetJobOnlineMembers', function(source, jobs)
-        return GetJobOnlineMembers(jobs)
+        return Framework.GetJobOnlineMembers(jobs)
     end),
     ---comment: Get player position
     ---@param source string

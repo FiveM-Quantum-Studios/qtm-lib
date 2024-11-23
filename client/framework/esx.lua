@@ -46,6 +46,36 @@ Framework = {
     GetJobOnlineMembers = function(jobs)
         return lib.callback.await('qtm-lib:GetJobOnlineMembers', false, jobs)
     end,
+    ---comment: Get player ids in area
+    ---@param pos vector3
+    ---@param radius number
+    ---@return table | nil
+    GetPlayerIdsInArea = function(pos, radius)
+        local playerTable = {}
+        local playersInArea = ESX.Game.GetPlayersInArea(pos, radius)
+
+        if #playersInArea > 0 then
+            for _, playerId in ipairs(playersInArea) do
+                playerTable[#playerTable + 1] = GetPlayerServerId(playerId)
+            end
+        else
+            return nil
+        end
+
+        return playerTable
+    end,
+    ---comment: Get char details from source
+    ---@param targetId string
+    ---@return table
+    GetSourceChar = function(targetId)
+        return lib.callback.await('qtm-lib:GetChar', false, targetId)
+    end,
+    ---comment: Get char details from identifier
+    ---@param identifier string
+    ---@return table
+    GetIdenfierChar = function(identifier)
+        return lib.callback.await('qtm-lib:GetChar2', false, identifier)
+    end,
 
 
     ---comment: Resets player hunger and thirst
