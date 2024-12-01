@@ -64,6 +64,19 @@ Framework = {
 
         return playerTable
     end,
+    GetChar = function()
+        local playerData = ESX.GetPlayerData()
+        if not playerData then return end
+
+        return {
+            firstname = playerData.firstname,
+            lastname = playerData.lastname,
+            fullname = playerData.name,
+            gender = playerData.sex,
+            dateofbirth = playerData.dateofbirth,
+            identifier = playerData.identifier,
+        }
+    end,
     ---comment: Get char details from source
     ---@param targetId string
     ---@return table

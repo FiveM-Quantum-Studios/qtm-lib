@@ -147,6 +147,9 @@ qtm.Minigames = {
 qtm.Notification = LoadSharedFile('notification', Config.Notifications)
 qtm.Logging = LoadSharedFile('logging', 'qtm')
 qtm.DumpTable = LoadSharedFile('dumptable', 'qtm')
+qtm.Utils = {
+    Table = LoadSharedFile('utils', 'table')
+}
 
 local qtm_meta = {
     __index = function(table, key)
