@@ -27,6 +27,7 @@ client_scripts {
     'client/utils/idleCam.lua'
 }
 server_script {
+  '@oxmysql/lib/MySQL.lua',
   'server/server.lua'
 }
 
