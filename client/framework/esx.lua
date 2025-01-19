@@ -65,16 +65,13 @@ Framework = {
         return playerTable
     end,
     GetChar = function()
-        local playerData = ESX.GetPlayerData()
-        if not playerData then return end
-
         return {
-            firstname = playerData.firstname,
-            lastname = playerData.lastname,
-            fullname = playerData.name,
-            gender = playerData.sex,
-            dateofbirth = playerData.dateofbirth,
-            identifier = playerData.identifier,
+            firstname = ESX.PlayerData.firstName,
+            lastname = ESX.PlayerData.firstName,
+            fullname = ESX.PlayerData.name,
+            gender = ESX.PlayerData.sex,
+            dateofbirth = ESX.PlayerData.dateofbirth,
+            identifier = ESX.PlayerData.identifier,
         }
     end,
     ---comment: Get char details from source

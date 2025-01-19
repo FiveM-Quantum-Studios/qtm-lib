@@ -24,14 +24,18 @@ Framework = {
     ---@param source string
     ---@return table | nil
     GetChar = function(source)
-        local player = ESX.GetPlayerFromId(source)
-        if not player then return end
+        local playerIdentifier = ESX.GetPlayerFromId(source)?.getIdentifier()
+
+        local row = MySQL.single.await('SELECT `firstname`, `lastname`, `sex`, `dateofbirth` FROM `users` WHERE `identifier` = ? LIMIT 1', {
+            playerIdentifier
+        })
+        if not row then return end
         return {
-            firstname = player.get('firstName'),
-            lastname = player.get('lastName'),
-            fullname = player.getName(),
-            gender = player.get('sex'),
-            dateofbirth = player.get('dateofbirth'),
+            firstname = row.firstname,
+            lastname = row.lastname,
+            fullname = string.format('%s %s', row.firstname, row.lastname),
+            gender = row.sex,
+            dateofbirth = row.dateofbirth,
         }
     end,
     ---comment: Callback to receive GetChar on client
