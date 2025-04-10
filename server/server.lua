@@ -86,7 +86,7 @@ function DetectBilling()
     elseif GetResourceState('es_extended') == 'started' then
         billing = 'esx'
     elseif GetResourceState('qbx_core') == 'started' then
-        billing = 'qbx_core'
+        billing = 'qbox'
     end
     if not billing then
         billing = 'custom'
