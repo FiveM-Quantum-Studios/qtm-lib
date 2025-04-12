@@ -25,7 +25,7 @@ function DetectFramework()
     local framework = nil
     if GetResourceState('es_extended') == 'started' then 
         framework = 'esx'
-    elseif GetResourceState('qbox_core') == 'started' then
+    elseif GetResourceState('qbx_core') == 'started' then
         framework = 'qbx'
     elseif GetResourceState('ox_core') == 'started' then
         framework = 'ox'

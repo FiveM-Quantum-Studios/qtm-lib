@@ -13,7 +13,7 @@ function DetectFramework()
     local framework = nil
     if GetResourceState('es_extended') == 'started' then 
         framework = 'esx'
-    elseif GetResourceState('qbox_core') == 'started' then
+    elseif GetResourceState('qbx_core') == 'started' then
         framework = 'qbx'
     elseif GetResourceState('ox_core') == 'started' then
         framework = 'ox'
@@ -86,7 +86,7 @@ function DetectBilling()
     elseif GetResourceState('es_extended') == 'started' then
         billing = 'esx'
     elseif GetResourceState('qbx_core') == 'started' then
-        billing = 'qbox'
+        billing = 'qbx'
     end
     if not billing then
         billing = 'custom'
