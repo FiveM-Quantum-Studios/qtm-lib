@@ -42,15 +42,15 @@ Framework = {
     ---@param src string
     ---@param targetSource string
     ---@return table | nil
-    lib.callback.register('qtm-lib:GetChar', function(src, targetSource)
+    lib.callback.register('qtm-lib:GetSourceChar', function(src, targetSource)
         return Framework.GetChar(targetSource)
     end),
     ---comment: Callback to receive GetChar on client
     ---@param src string
     ---@param targetIdentifier string
     ---@return table | nil
-    lib.callback.register('qtm-lib:GetChar', function(src, targetIdentifier)
-        return Framework.GetChar(Framework.GetIdentifierID(targetIdentifier))
+    lib.callback.register('qtm-lib:GetIdenChar', function(src, targetIdentifier)
+        return Framework.GetChar(ESX.Player(targetIdentifier))
     end),
     ---comment: Get all players
     ---@return table

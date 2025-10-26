@@ -78,13 +78,13 @@ Framework = {
     ---@param targetId string
     ---@return table
     GetSourceChar = function(targetId)
-        return lib.callback.await('qtm-lib:GetChar', false, targetId)
+        return lib.callback.await('qtm-lib:GetSourceChar', false, targetId)
     end,
     ---comment: Get char details from identifier
     ---@param identifier string
     ---@return table
     GetIdenfierChar = function(identifier)
-        return lib.callback.await('qtm-lib:GetChar2', false, identifier)
+        return lib.callback.await('qtm-lib:GetIdenChar', false, identifier)
     end,
 
 

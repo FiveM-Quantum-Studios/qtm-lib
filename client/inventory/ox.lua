@@ -34,7 +34,15 @@ Inventory = {
     ---@return boolean
     HasItemCount = function(table, _quantity)
         local quantity = _quantity or 1
-        return ox_inventory:Search('count', {table}) >= quantity
+        local itemTable = {}
+        if type(table) == "table" then
+            itemTable = table
+        else
+            itemTable = {table}
+        end
+        print(table, itemTable)
+        print("Test", exports.ox_inventory:Search('count', itemTable) >= quantity)
+        return exports.ox_inventory:Search('count', itemTable) >= quantity
     end,
 }
 
