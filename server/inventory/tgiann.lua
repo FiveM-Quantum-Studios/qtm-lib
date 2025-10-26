@@ -4,7 +4,7 @@ Inventory = {
     ---@param item string
     ---@return integer
     GetItemCount = function(source, item)
-        return 
+        return 0
     end,
     ---comment: Get item label
     ---@param source string
